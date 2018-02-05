@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Task } from '../task';
 
 @Pipe({
-  name: 'bucket'
+  name: 'bucket',
+  pure: false
 })
 export class BucketPipe implements PipeTransform {
   task:Task[]=[];

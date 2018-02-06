@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Task } from '../task'; 
 import { HttpHeaders } from '@angular/common/http';
-import { HttpClient } from '@angular/common/http';
-
+import { HttpClient } from '@angular/common/http'; 
 
 
 @Injectable()
@@ -26,7 +25,7 @@ export class TaskDetailsService {
   
   getCurrentTask(){  
     return this.task
-  }
+  } 
 
 
   addNewTask(newtask){

@@ -1,6 +1,12 @@
  
 
-<a *ngFor="let item of todos">{{item}}</a>
+<div class="row">
+  <div class="col-md-12" > 
+    <a href="javascript:;" class="btn btn-primary" (click)="createNewTask()">New Task</a> 
+  </div>
+</div>
+
+
 <div class="row">
   <div class="col-md-3"> 
       <h2>Yet To Start</h2>
@@ -32,12 +38,7 @@
   
 </div> 
 
-  <div class="row">
-    <div class="col-md-12" > 
-      <a href="javascript:;" class="btn btn-primary" (click)="addNewTask()">New Task</a>
-      <a href="javascript:;" class="btn btn-primary" (click)="addItem()">Todos</a>
-    </div>
-  </div>
+  
   <!--
   <div class="alert alert-success" *ngFor="let item of taskdata | bucket : 'Completed' let i=index" (click)="moveTo(item)">
     {{item.id}} | {{item.title}} | {{item.author}} 

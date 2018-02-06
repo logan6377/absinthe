@@ -8,7 +8,7 @@ import { Task } from '../task';
 export class BucketPipe implements PipeTransform {
   task:Task[]=[];
   transform(value: Task[], args?: any): any {
-    console.log(value)
+    //console.log(value)
     this.task=[];   
     for(let i=0; i<value.length; i++){  
       if(value[i].STATUS == args){  

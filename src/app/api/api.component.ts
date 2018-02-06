@@ -19,7 +19,7 @@ export class ApiComponent implements OnInit {
   } 
 
   method1Call() {
-    this.httpClient.get("https://habitica.com/api/v3/user", {headers: new HttpHeaders().set("x-api-user", "a91af8db-e4d4-42bb-b034-935cdd439670").set("x-api-key", "6c4a887a-d5b9-4a92-b919-74d6dd918e02")}).subscribe(
+    this.httpClient.get("http://10.98.20.104/simple-codeigniter-rest-api-master/index.php/book?token=$1$Se5o48aF$jYc.BcM.NHAHS9YDXL4C8.&user-id=1", {}).subscribe(
       success => {
         console.log("Successfully Completed");
         console.log(success);
@@ -28,7 +28,7 @@ export class ApiComponent implements OnInit {
   }
 
   method2Call() {
-    this.httpClient.post("http://10.98.20.100/simple-codeigniter-rest-api-master/index.php/auth/login", {'username':'admin', 'password':'Admin123$'}, {headers: new HttpHeaders().set('content-type', 'text/plain')}).subscribe(
+    this.httpClient.post("http://10.98.20.104/simple-codeigniter-rest-api-master/index.php/book/", {'username':'admin', 'password':'Admin123$'}, {headers: new HttpHeaders().set('content-type', 'text/plain')}).subscribe(
       success => {
         console.log("Successfully Completed");
         console.log(success);

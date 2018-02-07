@@ -6,11 +6,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { MyHttpInterceptor } from './my-http-interceptor';
 import { AppComponent } from './app.component';
 import { environment } from "../environments/environment";
-import { TaskListModule } from './task-list/task-list.module';
-import { TaskDetailsService } from './services/task-details.service'; 
+import { TaskDetailsService } from './services/task-details.service';
+import { TaskListModule } from './task/task-list/task-list.module';
+import { TaskCreateModule } from './task/task-create/task-create.module'; 
 import { ApiModule } from './api/api.module';
 import { DatabaseService } from './api/database.service';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -19,9 +21,11 @@ import { DatabaseService } from './api/database.service';
   imports: [
     BrowserModule,
     TaskListModule,
+    TaskCreateModule,
     HttpModule,
     HttpClientModule,
     ApiModule,
+    NgbModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [{ 

@@ -1,7 +1,6 @@
 import { Component, OnInit   } from '@angular/core';
-import { TaskDetailsService } from '../services/task-details.service';
-import { Task } from '../task';  
-import { Tasklist } from '../services/tasklist';
+import { TaskDetailsService } from '../../services/task-details.service';
+import { Task } from '../task';   
 
 @Component({
   selector: 'app-task-list',
@@ -26,7 +25,7 @@ export class TaskListComponent implements OnInit {
     newTask.TASK_ID = 123456;
     newTask.STATUS = 'Completed';
 
-    this.http.addNewTask(Object.assign({}, newTask));      
+    this.http.addNewTask(Object.assign({}, newTask)); 
   }  
   
 

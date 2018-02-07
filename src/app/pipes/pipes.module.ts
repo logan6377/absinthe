@@ -6,4 +6,4 @@ import { BucketPipe } from './bucket.pipe';
     declarations: [ PublisherPipe, BucketPipe ],
     exports: [ PublisherPipe, BucketPipe ]
 })
-export class MyPipesModule {}
+export class PipesModule {}

@@ -1,10 +1,22 @@
 <div class="container-fluid">
-      <div class="row">
-            <div class="col-md-12">
-                  <h1>Status</h1>
+
+      <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                  <h1 class="display-4">Absinthe</h1>
+                  <p class="lead">Create and maintain your daily activity.</p>
             </div>
       </div>
-      <app-task-list></app-task-list>
       
-      <!--app-api></app-api-->
+      <div class="row">
+            <div class="col">
+                  <ul class="nav nav-tabs">
+                        <li class="nav-item"><a class="nav-link active">Create New Task</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#profile">Task List</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#profile">Completed Task</a></li> 
+                  </ul>  
+            </div> 
+      </div> 
+      <app-task-create></app-task-create>
+      <hr>
+      <app-task-list></app-task-list> 
 </div>

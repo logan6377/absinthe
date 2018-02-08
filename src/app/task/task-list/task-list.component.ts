@@ -12,6 +12,7 @@ export class TaskListComponent implements OnInit {
   
   constructor(private http:TaskDetailsService ) { 
     this.taskdata = this.http.getCurrentTask(); 
+    console.log(this.taskdata)
    }
 
   ngOnInit() {
@@ -22,8 +23,8 @@ export class TaskListComponent implements OnInit {
 
   createNewTask(){ 
     let newTask = new Task();
-    newTask.TASK_ID = 123456;
-    newTask.STATUS = 'Completed';
+    newTask.taskID = 123456;
+    newTask.status = 'Completed';
 
     this.http.addNewTask(Object.assign({}, newTask)); 
   }  

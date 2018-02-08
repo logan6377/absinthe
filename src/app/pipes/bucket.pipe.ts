@@ -8,10 +8,10 @@ import { Task } from '../task/task';
 export class BucketPipe implements PipeTransform {
   task:Task[]=[];
   transform(value: Task[], args?: any): any {
-    //console.log(value)
+    //console.log('aa',value)
     this.task=[];   
     for(let i=0; i<value.length; i++){  
-      if(value[i].STATUS == args){  
+      if(value[i].status == args){  
         this.task.push(value[i])  
       } 
     }   

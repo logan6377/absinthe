@@ -20,12 +20,25 @@ export class TaskCreateComponent implements OnInit {
       Complexity:string[]=['Simple','Medium','Complex'];
       Publishers:string[]=['WM','CVS','DG'];
       POCS:string[]=['Bill','Khary','Noble'];
-      Status:string[]=['In Progress', 'Yet to start']
+      Status:string[]=['InProgress', 'YetToStart'];
 
       schStart:any;
       schEnd:any;
       actStart:any;
       actEnd:any;
+
+      testData = {
+            "token" : "$1$2zVydAgV$7GHtV1pofpYGRWxC1qCUq.",
+            "uid" : "2",
+            "converge_id": "00001_000_PNG",
+            "jobtype": "New",
+            "complexity":"3",
+            "scheduled_start_date":"2018-02-07",
+            "scheduled_end_date":"2018-02-11",
+            "publisher":"WM",
+            "pocs":"BILL",
+            "scheduled_hours":"24"
+            }
 
       constructor(private http:TaskDetailsService) {  }
 
@@ -38,7 +51,16 @@ export class TaskCreateComponent implements OnInit {
       }
 
       onSubmit(data){
-            this.http.addNewTask(data);
+            this.http.addNewTask(data)
+            //.subscribe(res => console.log(res));
+            this.resetForm()
+            
+      }
+
+      resetForm(){
+            this.createTask = {
+                  convergeID:''
+            };  
       }
 
 }

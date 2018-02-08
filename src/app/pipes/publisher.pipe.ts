@@ -11,7 +11,7 @@ export class PublisherPipe implements PipeTransform {
   transform(value: Task[], args?: any): any {  
     console.log(value)
     for(let i=0; i<value.length; i++){ 
-      if(value[i].PUBLISHER == "Walmart"){  
+      if(value[i].publisher == "Walmart"){  
        // console.log(value[i])
         this.walmart.push(value[i])
       } 

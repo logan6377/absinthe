@@ -29,7 +29,9 @@ export class TaskDetailsService {
 
 
   addNewTask(newtask){
-    this.task.push(newtask) 
+    console.log(newtask)
+    this.task.push(newtask)
+    console.log(this.task) 
   }
   
 

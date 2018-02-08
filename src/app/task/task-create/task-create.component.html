@@ -1,47 +1,47 @@
 <div class="row justify-content-md-center task-create">
       <div class="col-9" >
+                            
             <form #taskCreateForm="ngForm" (ngSubmit)="onSubmit(taskCreateForm.value)">
                   <div class="form-row">
                         <div class="form-group col-md-3">
                               <!--label for="inputPassword4">Job Type</label-->
-                              <select class="custom-select">
-                                    <option selected>Job type</option>
-                                    <option value="1">New Build</option>
-                                    <option value="2">Refresh</option>
-                                    <option value="3">Issues</option>
+                              <select class="custom-select" 
+                              name="jobeType" 
+                              [ngModel]="DefaultValue" > 
+                                    <option disabled="true" [ngValue]="null">Job Type</option>
+                                    <option *ngFor="let val of JobType" [ngValue]="val">{{val}}</option> 
                               </select>
                         </div>
                   </div>
+
                   <div class="form-row">  
                         <div class="form-group col-md-3"> 
-                              <input type="email" name="convergeID" class="form-control" id="convergeID" placeholder="ConvergeID"  
-                              [(ngModel)]="createTask.convergeID" 
-                              #convergeID="ngModel"
-                              >
+                              <input type="email" class="form-control" placeholder="ConvergeID"
+                              name="convergeID"  
+                              [(ngModel)]="createTask.convergeID">
                         </div>
                         <div class="form-group col-md-3"> 
-                              <select class="custom-select" name="complexity" 
-                              #complexity="ngModel"
-                              [(ngModel)]="JobType" 
-                              > 
-                                    <option *ngFor="let j of JobTypes">{{j}}</option> 
+                              <select class="custom-select" 
+                              name="complexity" 
+                              [ngModel]="DefaultValue" > 
+                                    <option disabled="true" [ngValue]="null">Complexity</option>
+                                    <option *ngFor="let val of Complexity" [ngValue]="val">{{val}}</option> 
                               </select>
                         </div>
                         <div class="form-group col-md-3"> 
-                              <select id="inputState" class="form-control">
-                                    <option selected>Publisher</option>
-                                    <option>WM</option>
-                                    <option>CVS</option>
-                                    <option>DG</option>
+                              <select class="custom-select" 
+                              name="publisher" 
+                              [ngModel]="DefaultValue" > 
+                                    <option disabled="true" [ngValue]="null">Publisher</option>
+                                    <option *ngFor="let val of Publishers" [ngValue]="val">{{val}}</option> 
                               </select>
                         </div>
                         <div class="form-group col-md-3"> 
-                              <select id="inputState" class="form-control">
-                                    <option selected>POC's</option>
-                                    <option>Bill Edgington</option>
-                                    <option>Edgar</option>
-                                    <option>Khary</option>
-                                    <option>Noble</option>
+                              <select class="custom-select" 
+                              name="pocs" 
+                              [ngModel]="DefaultValue" > 
+                                    <option disabled="true" [ngValue]="null">POC's</option>
+                                    <option *ngFor="let val of POCS" [ngValue]="val">{{val}}</option> 
                               </select>
                         </div>
                   </div>
@@ -49,7 +49,7 @@
                   <div class="form-row">
                         <div class="form-group col-md-2"> 
                               <div class="input-group"> 
-                                    <input class="form-control" placeholder="Scheduled start date"  [(ngModel)]="schStart" name="dp" ngbDatepicker #a="ngbDatepicker"><!--   -->
+                                    <input class="form-control" placeholder="Scheduled start date"  [(ngModel)]="schStart" name="schStart" ngbDatepicker #a="ngbDatepicker"><!--   -->
                                     <div class="input-group-append">
                                           <button class="btn btn-outline-secondary" (click)="a.toggle()" type="button">
                                                 <img src="/assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="form-group col-md-2"> 
                               <div class="input-group">
-                                    <input class="form-control" placeholder="Scheduled end date"  [(ngModel)]="schEnd" name="dp" ngbDatepicker #b="ngbDatepicker"><!--   -->
+                                    <input class="form-control" placeholder="Scheduled end date"  [(ngModel)]="schEnd" name="schEnd" ngbDatepicker #b="ngbDatepicker"><!--   -->
                                     <div class="input-group-append">
                                           <button class="btn btn-outline-secondary" (click)="b.toggle()" type="button">
                                                 <img src="/assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
@@ -68,12 +68,15 @@
                               </div>
                         </div>
                         <div class="form-group col-md-2"> 
-                              <input type="email" class="form-control" id="inputAddress" placeholder="Scheduled hours">
+                              <input type="email" class="form-control" id="inputAddress" placeholder="Scheduled hours"
+                              [(ngModel)]="schHours"
+                              name="schHours"
+                              >
                         </div>
 
-                        <div class="form-group col-md-2"> 
+                        <!--div class="form-group col-md-2"> 
                               <div class="input-group"> 
-                                    <input class="form-control" placeholder="Actual start date"  [(ngModel)]="actStart" name="dp" ngbDatepicker #c="ngbDatepicker"><!--   -->
+                                    <input class="form-control" placeholder="Actual start date"  [(ngModel)]="actStart" name="dp" ngbDatepicker #c="ngbDatepicker">
                                     <div class="input-group-append">
                                           <button class="btn btn-outline-secondary" (click)="c.toggle()" type="button">
                                                 <img src="/assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
@@ -83,7 +86,7 @@
                         </div>
                         <div class="form-group col-md-2"> 
                               <div class="input-group">
-                                    <input class="form-control" placeholder="Actual end date"  [(ngModel)]="actEnd" name="dp" ngbDatepicker #d="ngbDatepicker"><!--   -->
+                                    <input class="form-control" placeholder="Actual end date"  [(ngModel)]="actEnd" name="dp" ngbDatepicker #d="ngbDatepicker">
                                     <div class="input-group-append">
                                           <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
                                                 <img src="/assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
@@ -93,18 +96,20 @@
                         </div>
                         <div class="form-group col-md-2"> 
                               <input type="email" class="form-control" id="inputAddress" placeholder="Actual hours">
-                        </div>
+                        </div-->
                   </div>
                   <div class="form-row">
                         <div class="form-group col-md-4"> 
-                              <select class="custom-select"> 
-                                    <option value="1" default>Status</option>
-                                    <option value="1" default>In progress</option>
-                                    <option value="2">Yet to start</option> 
+                              <select class="custom-select" 
+                              name="status"
+                              [ngModel]="DefaultValue"                              
+                              > 
+                                    <option disabled="true" [ngValue]="null">Status</option>
+                                    <option *ngFor="let val of Status" [ngValue]="val">{{val}}</option>                                    
                               </select>
                         </div>
                         
-                        <div class="form-group col-md-4"> 
+                        <!--div class="form-group col-md-4"> 
                               <input type="email" class="form-control" id="inputAddress" placeholder="Total Functionality">
                         </div>
                         <div class="form-group col-md-4"> 
@@ -115,7 +120,7 @@
                                     <option>Compatibility</option>
                                     <option>Others</option>
                               </select>
-                        </div>
+                        </div-->
 
                   </div>
                   
@@ -123,12 +128,9 @@
                         <label for="inputState">Edit Comments</label>
                         <textarea class="form-control"></textarea> 
                   </div--> 
-                  <div class="form-row">
-                        
-                  </div>
                   <div class="form-group">
                         <label for="inputState">Comments</label>
-                        <textarea class="form-control"></textarea> 
+                        <textarea class="form-control" [(ngModel)]="comments" name="comments"></textarea> 
                   </div> 
                   <button type="submit" class="btn btn-primary" (click)="createNewTask()">Create new task</button>
             </form>

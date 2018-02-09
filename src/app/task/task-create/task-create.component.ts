@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'; 
 import { Task } from '../task';
 import { TaskDetailsService } from '../../services/task-details.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -40,7 +41,7 @@ export class TaskCreateComponent implements OnInit {
             "scheduled_hours":"24"
             }
 
-      constructor(private http:TaskDetailsService) {  }
+      constructor(private http:TaskDetailsService, private router:Router) {  }
 
       ngOnInit() {
 
@@ -51,10 +52,9 @@ export class TaskCreateComponent implements OnInit {
       }
 
       onSubmit(data){
-            this.http.addNewTask(data)
-            //.subscribe(res => console.log(res));
-            this.resetForm()
-            
+            this.http.addNewTask(data) 
+            this.resetForm(); 
+            this.router.navigate(['task-list']); 
       }
 
       resetForm(){

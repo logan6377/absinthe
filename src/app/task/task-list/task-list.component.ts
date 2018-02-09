@@ -11,8 +11,8 @@ export class TaskListComponent implements OnInit {
   taskdata:Task[]; 
   
   constructor(private http:TaskDetailsService ) { 
-    this.taskdata = this.http.getCurrentTask(); 
-    console.log(this.taskdata)
+      this.taskdata = this.http.getCurrentTask();  
+      console.log(this.taskdata) 
    }
 
   ngOnInit() {

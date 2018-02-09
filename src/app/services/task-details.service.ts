@@ -4,10 +4,12 @@ import { HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http'; 
 import { catchError } from 'rxjs/operators';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router/src/router';
 
 
 @Injectable()
-export class TaskDetailsService {    
+export class TaskDetailsService {  
   task : Task[] = [ 
     {
       taskID:123456,convergeID:'01_000_ABCD_123456',jobtype :'New Build',complexity:'Simple',scheduled_start_date:new Date("2016-01-16T16:00:00"),scheduled_end_date:new Date("2016-01-16T16:00:00"),status:'InProgress',publisher:'WM',pocs:'Bill Edgington',jobComments:'Sample job description',scheduled_hours:32,totalFunctionality:10,functionalityDetails:'Sample functionality description',editReason:'Sample edit description',actualStart:new Date("2016-01-16T16:00:00"),actualEnd:new Date("2016-01-16T16:00:00"),actualHours:16,tokenId:'ABCDEF123456'
@@ -22,8 +24,10 @@ export class TaskDetailsService {
   ];
 
   todosData:string[]=[];
+  
 
-  constructor(private http:HttpClient) {} 
+  constructor(private http:HttpClient) {
+  } 
   
   getCurrentTask(){  
     return this.task

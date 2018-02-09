@@ -1,5 +1,5 @@
 export class Task{
-      taskID:number
+    taskID:number
     convergeID:string
     jobtype :string
     complexity:string

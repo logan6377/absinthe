@@ -52,6 +52,7 @@ export class TaskCreateComponent implements OnInit {
       }
 
       onSubmit(data){
+            console.log(data)
             this.http.addNewTask(data) 
             this.resetForm(); 
             this.router.navigate(['task-list']); 

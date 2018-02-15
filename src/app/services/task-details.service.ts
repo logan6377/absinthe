@@ -12,7 +12,8 @@ import{ Observable } from 'rxjs/Observable';
 @Injectable()
 export class TaskDetailsService { 
 
-      private tokenID = '$1$j1.AXhn7$n/Mt5OpsXXRXFR1qA6GaQ.'
+      private tokenID = '$1$VRaizGaf$h3x0DtYFb93/wNNMqpUsV0';
+      private url = 'http://10.98.102.79/trackR/trackR/';
       task : Task[] = [];
       todosData:string[]=[];
   
@@ -21,13 +22,13 @@ export class TaskDetailsService {
       } 
       
       getCurrentTask(){  
-            return this.http.get<Task[]>('http://10.98.20.104/trackR/index.php/task?token='+this.tokenID+'&uid=2')
+            return this.http.get<Task[]>(this.url+'index.php/task?token='+this.tokenID+'&uid=2')
       } 
 
       createTaskDB(){
 
       // return this.http.post<any>('http://10.98.20.104/simple-codeigniter-rest-api-master/index.php/auth/login', { empid : "IN002", password: '123' },{headers: new HttpHeaders().set('Content-Type', 'application/json')}); 
-            return this.http.post<any>('http://10.98.20.104/trackR/index.php/task/create', {
+            return this.http.post<any>(this.url+'index.php/task/create', {
                   token : this.tokenID,
                   uid : "2",
                   converge_id: "aaaLaogan",

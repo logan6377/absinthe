@@ -19,6 +19,7 @@ import { ApiModule } from './api/api.module';
 import { DatabaseService } from './api/database.service';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';  
+import { ObserverModule } from './observer/observer.module';
 
 
 
@@ -41,7 +42,8 @@ const taskRouts:Routes = [
     ApiModule,
     NgbModule.forRoot(),
     RouterModule.forRoot(taskRouts),
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    ObserverModule
   ],
   providers: [{ 
     provide: HTTP_INTERCEPTORS, 

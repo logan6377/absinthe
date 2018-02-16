@@ -12,5 +12,6 @@ export const environment = {
     projectId: "taskmanagement-54701",
     storageBucket: "",
     messagingSenderId: "728886357554"
-  }
+  },
+  url:''
 };

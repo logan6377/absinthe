@@ -6,23 +6,38 @@ import { catchError } from 'rxjs/operators';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router/src/router';
-import{ Observable } from 'rxjs/Observable';
+import { WebsocketService } from './websocket.service';
+import { Observable, Subject } from 'rxjs/Rx';
 
 
 @Injectable()
 export class TaskDetailsService { 
 
-      private tokenID = '$1$VRaizGaf$h3x0DtYFb93/wNNMqpUsV0';
-      private url = 'http://10.98.102.79/trackR/trackR/';
+      private tokenID = '$1$f4H5yZdo$5KEFwfIkVqwIfz6YRsHxz0';
+      //private url = 'http://10.98.102.79/trackR/trackR/';
+      private url = 'http://192.168.0.100/trackR/trackR/';
       task : Task[] = [];
       todosData:string[]=[];
   
+      messages: Subject<any>;
 
-      constructor(private http:HttpClient) {
+      constructor(private http:HttpClient, private wsService: WebsocketService) {
+
+        this.messages = <Subject<any>>wsService
+          .connect()
+          .map( (response:any):any => {
+            return response  
+          })        
+
       } 
+
+      sendMsg(msg) {
+        this.messages.next(msg);
+      }
+    
       
       getCurrentTask(){  
-            return this.http.get<Task[]>(this.url+'index.php/task?token='+this.tokenID+'&uid=2')
+            //return this.http.get<Task[]>(this.url+'index.php/task?token='+this.tokenID+'&uid=2')
       } 
 
       createTaskDB(){

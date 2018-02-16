@@ -12,7 +12,7 @@ export class TaskListComponent implements OnInit {
   showList:boolean=false;
   
   constructor(private http:TaskDetailsService ) { 
-      /* this.http.getCurrentTask()
+      this.http.getCurrentTask()
       .subscribe( 
             (data) => {
                   this.taskdata=data;
@@ -21,20 +21,12 @@ export class TaskListComponent implements OnInit {
             },
             err => console.error(err),
             () => console.log('done')
-      ) */
-
-      this.http.messages.subscribe(msg => {
-        console.log(msg);
-      })
+      ) 
    }
 
   ngOnInit() {
       
   } 
-
-  showConfig(){
-        
-  }
 
   createNewTask(){ 
     let newTask = new Task();

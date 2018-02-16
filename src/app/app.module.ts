@@ -20,7 +20,6 @@ import { DatabaseService } from './api/database.service';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';  
 import { ObserverModule } from './observer/observer.module';
-import { WebsocketService } from './services/websocket.service';
 
 
 
@@ -50,7 +49,7 @@ const taskRouts:Routes = [
     provide: HTTP_INTERCEPTORS, 
     useClass: MyHttpInterceptor, 
     multi: true 
-},TaskDetailsService, DatabaseService, WebsocketService],
+},TaskDetailsService, DatabaseService],
   bootstrap: [AppComponent],
   exports:[]
 })

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router'; 
 import { AngularFireModule } from 'angularfire2'; 
 import { HttpModule } from '@angular/http';
 import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';

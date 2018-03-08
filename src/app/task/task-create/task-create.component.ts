@@ -26,34 +26,17 @@ export class TaskCreateComponent implements OnInit {
       schStart:any;
       schEnd:any;
       actStart:any;
-      actEnd:any;
-
-      testData = {
-            "token" : "$1$2zVydAgV$7GHtV1pofpYGRWxC1qCUq.",
-            "uid" : "2",
-            "converge_id": "00001_000_PNG",
-            "jobtype": "New",
-            "complexity":"3",
-            "scheduled_start_date":"2018-02-07",
-            "scheduled_end_date":"2018-02-11",
-            "publisher":"WM",
-            "pocs":"BILL",
-            "scheduled_hours":"24"
-            }
+      actEnd:any; 
 
       constructor(private http:TaskDetailsService, private router:Router) {  }
 
       ngOnInit() {
 
-      }
-
-      createNewTask(){
-            //console.log(this.actStart)
-      }
+      } 
 
       onSubmit(data){
             console.log(data)
-            this.http.createTaskDB().subscribe(
+            this.http.createTaskDB(data).subscribe(
                   (data)=>{
                         console.log(data);
                         this.resetForm(); 

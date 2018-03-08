@@ -1,9 +1,10 @@
-import { NgModule } from "@angular/core";
-import { PublisherPipe } from "./publisher.pipe";
+import { NgModule } from "@angular/core"; 
 import { BucketPipe } from './bucket.pipe';
+import { StatusPipe } from "./status.pipe";
+import { ComplexityPipe } from './complexity.pipe';
 
 @NgModule({
-    declarations: [ PublisherPipe, BucketPipe ],
-    exports: [ PublisherPipe, BucketPipe ]
+    declarations: [ BucketPipe, StatusPipe, ComplexityPipe ],
+    exports: [ BucketPipe, StatusPipe, ComplexityPipe ]
 })
 export class PipesModule {}

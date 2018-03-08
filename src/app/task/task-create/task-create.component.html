@@ -6,7 +6,7 @@
                         <div class="form-group col-md-3">
                               <!--label for="inputPassword4">Job Type</label-->
                               <select class="custom-select" 
-                              name="jobeType" 
+                              name="jobtype" 
                               [ngModel]="DefaultValue" > 
                                     <option disabled="true" [ngValue]="null">Job Type</option>
                                     <option *ngFor="let val of JobType" [ngValue]="val">{{val}}</option> 
@@ -17,12 +17,12 @@
                   <div class="form-row">  
                         <div class="form-group col-md-3"> 
                               <input type="email" class="form-control" placeholder="ConvergeID"
-                              name="convergeID"  
+                              name="converge_id"  
                               [(ngModel)]="createTask.convergeID">
                         </div>
                         <div class="form-group col-md-3"> 
                               <select class="custom-select" 
-                              name="complexity" 
+                              name="#val" 
                               [ngModel]="DefaultValue" > 
                                     <option disabled="true" [ngValue]="null">Complexity</option>
                                     <option *ngFor="let val of Complexity" [ngValue]="val">{{val}}</option> 
@@ -70,7 +70,7 @@
                         <div class="form-group col-md-2"> 
                               <input type="email" class="form-control" id="inputAddress" placeholder="Scheduled hours"
                               [(ngModel)]="scheduled_hours"
-                              name="schHours"
+                              name="scheduled_hours"
                               >
                         </div>
 
@@ -101,7 +101,7 @@
                   <div class="form-row">
                         <div class="form-group col-md-4"> 
                               <select class="custom-select" 
-                              name="status"
+                              name="task_status"
                               [ngModel]="DefaultValue"                              
                               > 
                                     <option disabled="true" [ngValue]="null">Status</option>
@@ -130,9 +130,9 @@
                   </div--> 
                   <div class="form-group">
                         <label for="inputState">Comments</label>
-                        <textarea class="form-control" [(ngModel)]="comments" name="comments"></textarea> 
+                        <textarea class="form-control" [(ngModel)]="comments" name="job_comments"></textarea> 
                   </div> 
-                  <button type="submit" class="btn btn-primary" (click)="createNewTask()">Create new task</button>
+                  <button type="submit" class="btn btn-primary" >Create new task</button>
             </form>
       </div> 
 

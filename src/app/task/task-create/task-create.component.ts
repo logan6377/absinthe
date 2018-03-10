@@ -28,18 +28,18 @@ export class TaskCreateComponent implements OnInit {
       actStart:any;
       actEnd:any;
 
-      testData = {
-            "token" : "$1$2zVydAgV$7GHtV1pofpYGRWxC1qCUq.",
-            "uid" : "2",
-            "converge_id": "00001_000_PNG",
-            "jobtype": "New",
-            "complexity":"3",
-            "scheduled_start_date":"2018-02-07",
-            "scheduled_end_date":"2018-02-11",
-            "publisher":"WM",
-            "pocs":"BILL",
-            "scheduled_hours":"24"
-            }
+      // testData = {
+      //       "token" : "$1$MvU4sjgX$sFTe5ggoINLvU.obVxKUn/",
+      //       "uid" : "2",
+      //       "converge_id": "00001_000_PNG",
+      //       "jobtype": "New",
+      //       "complexity":"3",
+      //       "scheduled_start_date":"2018-02-07",
+      //       "scheduled_end_date":"2018-02-11",
+      //       "publisher":"WM",
+      //       "pocs":"BILL",
+      //       "scheduled_hours":"24"
+      //       }
 
       constructor(private http:TaskDetailsService, private router:Router) {  }
 
@@ -53,7 +53,7 @@ export class TaskCreateComponent implements OnInit {
 
       onSubmit(data){
             console.log(data)
-            this.http.createTaskDB().subscribe(
+            this.http.createTaskDB(data).subscribe(
                   (data)=>{
                         console.log(data);
                         this.resetForm(); 

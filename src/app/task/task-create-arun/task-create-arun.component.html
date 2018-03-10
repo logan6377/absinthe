@@ -1,0 +1,256 @@
+<div class="row justify-content-md-center task-create">
+            <div class="col-9" >
+              <form #taskCreateForm="ngForm" (ngSubmit)="onSubmit(taskCreateForm.value)">
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <select  class="custom-select"  name="jobtype"  aria-placeholder="jobtype"  [(ngModel)]="choice" required>
+                      <option disabled="true" [ngSwitch]="null">Job Typddaasfde</option>
+                      <option *ngFor="let SAM of JobType" [ngSwitch]="SAM">{{SAM.value}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <div [ngSwitch]="choice">
+                      <div *ngSwitchCase="'Newbuild'">
+                        <div class="form-row">
+                          <div class="form-group col-md-3">
+                            <input type="email" class="form-control" placeholder="converge_id"name="converge_id"[(ngModel)]="createTask.convergeID" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                              <select class="custom-select"name="complexity"[ngModel]="DefaultValue" required>
+                                <option disabled="true" [ngValue]="null">complexity</option>
+                                <option *ngFor="let val of Complexity" [ngValue]="val">{{val}}</option>
+                              </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                              <select class="custom-select"name="publisher"[ngModel]="DefaultValue" required >
+                                <option disabled="true" [ngValue]="null">publisher</option>
+                                <option *ngFor="let val of Publishers" [ngValue]="val">{{val}}</option>
+                              </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                              <select class="custom-select"name="pocs"[ngModel]="DefaultValue" required >
+                                <option disabled="true" [ngValue]="null">POC's</option>
+                                <option *ngFor="let val of POCS" [ngValue]="val">{{val}}</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="form-group col-md-3">
+                              <div class="input-group">
+                                <input class="form-control" placeholder="Scheduled end date"[(ngModel)]="schEnd" name="scheduled_end_date" ngbDatepicker #b="ngbDatepicker"required>
+                                  <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" (click)="b.toggle()" type="button">
+                                      <img src="/assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-3">
+                                <select class="custom-select"name="task_status"[ngModel]="DefaultValue" required>
+                                  <option disabled="true" [ngValue]="null">Status</option>
+                                  <option *ngFor="let val of Status" [ngValue]="val">{{val}}</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="inputState">Comments</label>
+                              <textarea class="form-control" [(ngModel)]="comments" name="job_comments"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" (click)="createNewTask()"[disabled] = "!taskCreateForm.valid">Create new task</button>
+                          </div>
+                          <div *ngSwitchCase="'Refresh'">
+                            <div class="form-row">
+                              <div class="form-group col-md-3">
+                                <input type="email" class="form-control" placeholder="ConvergeID"name="converge_id"[(ngModel)]="createTask.convergeID" required>
+                                </div>
+                                <div class="form-group col-md-3">
+                                  <select class="custom-select"name="complexity"[ngModel]="DefaultValue" required>
+                                    <option disabled="true" [ngValue]="null">Complexity</option>
+                                    <option *ngFor="let val of Complexity" [ngValue]="val">{{val}}</option>
+                                  </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                  <select class="custom-select"name="publisher"[ngModel]="DefaultValue" required>
+                                    <option disabled="true" [ngValue]="null">Publisher</option>
+                                    <option *ngFor="let val of Publishers" [ngValue]="val">{{val}}</option>
+                                  </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                  <select class="custom-select"name="pocs"[ngModel]="DefaultValue" required>
+                                    <option disabled="true" [ngValue]="null">POC's</option>
+                                    <option *ngFor="let val of POCS" [ngValue]="val">{{val}}</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="form-row">
+                                <div class="form-group col-md-3">
+                                  <div class="input-group">
+                                    <input class="form-control" placeholder="Scheduled start date"  [(ngModel)]="schStart" name="scheduled_start_date" ngbDatepicker #a="ngbDatepicker" required>
+                                      <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" (click)="a.toggle()" type="button">
+                                          <img src="/assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group col-md-3">
+                                    <div class="input-group">
+                                      <input class="form-control" placeholder="Scheduled end date"  [(ngModel)]="schEnd" name="scheduled_end_date" ngbDatepicker #b="ngbDatepicker" required>
+                                        <div class="input-group-append">
+                                          <button class="btn btn-outline-secondary" (click)="b.toggle()" type="button">
+                                            <img src="/assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                      <select class="custom-select" name="task_status"[ngModel]="DefaultValue" required>
+                                        <option disabled="true" [ngValue]="null">Status</option>
+                                        <option *ngFor="let val of Status" [ngValue]="val">{{val}}</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="inputState">Comments</label>
+                                    <textarea class="form-control" [(ngModel)]="comments" name="job_comments"></textarea>
+                                  </div>
+                                  <button type="submit" class="btn btn-primary" (click)="createNewTask()"[disabled] = "!taskCreateForm.valid">Create new task</button>
+                                </div>
+                                <div *ngSwitchCase="'Revisions'">
+                                  <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                      <input type="email" class="form-control" placeholder="ConvergeID"name="converge_id"[(ngModel)]="createTask.convergeID" required>
+                                      </div>
+                                      <div class="form-group col-md-3">
+                                        <select class="custom-select"name="complexity"[ngModel]="DefaultValue" required>
+                                          <option disabled="true" [ngValue]="null">Complexity</option>
+                                          <option *ngFor="let val of Complexity" [ngValue]="val">{{val}}</option>
+                                        </select>
+                                      </div>
+                                      <div class="form-group col-md-3">
+                                        <select class="custom-select"name="publisher"[ngModel]="DefaultValue" required>
+                                          <option disabled="true" [ngValue]="null">Publisher</option>
+                                          <option *ngFor="let val of Publishers" [ngValue]="val">{{val}}</option>
+                                        </select>
+                                      </div>
+                                      <div class="form-group col-md-3">
+                                        <select class="custom-select"name="pocs"[ngModel]="DefaultValue" required>
+                                          <option disabled="true" [ngValue]="null">POC's</option>
+                                          <option *ngFor="let val of POCS" [ngValue]="val">{{val}}</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="form-row">
+                                      <div class="form-group col-md-3">
+                                        <div class="input-group">
+                                          <input class="form-control" placeholder="Scheduled start date"  [(ngModel)]="schStart" name="scheduled_start_date" ngbDatepicker #a="ngbDatepicker" required>
+                                            <div class="input-group-append">
+                                              <button class="btn btn-outline-secondary" (click)="a.toggle()" type="button">
+                                                <img src="/assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                                              </button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                          <div class="input-group">
+                                            <input class="form-control" placeholder="Scheduled end date"  [(ngModel)]="schEnd" name="scheduled_end_date" ngbDatepicker #b="ngbDatepicker" required>
+                                              <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary" (click)="b.toggle()" type="button">
+                                                  <img src="/assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                                                </button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="form-row">
+                                          <div class="form-group col-md-3">
+                                            <select class="custom-select"name="task_status"[ngModel]="DefaultValue"required>
+                                              <option disabled="true" [ngValue]="null">Status</option>
+                                              <option *ngFor="let val of Status" [ngValue]="val">{{val}}</option>
+                                            </select>
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="inputState">Comments</label>
+                                          <textarea class="form-control" [(ngModel)]="comments" name="job_comments"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary" (click)="createNewTask()"[disabled] = "!taskCreateForm.valid">Create new task</button>
+                                      </div>
+                                      <div *ngSwitchCase="'Issues'">
+                                        <div class="form-row">
+                                          <div class="form-group col-md-3">
+                                            <input type="email" class="form-control" placeholder="ConvergeID"name="converge_id"[(ngModel)]="createTask.convergeID" required>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                              <select class="custom-select"name="complexity"[ngModel]="DefaultValue" required>
+                                                <option disabled="true" [ngValue]="null">Complexity</option>
+                                                <option *ngFor="let val of Complexity" [ngValue]="val">{{val}}</option>
+                                              </select>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                              <select class="custom-select"name="publisher"[ngModel]="DefaultValue" required>
+                                                <option disabled="true" [ngValue]="null">Publisher</option>
+                                                <option *ngFor="let val of Publishers" [ngValue]="val">{{val}}</option>
+                                              </select>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                              <select class="custom-select"name="pocs"[ngModel]="DefaultValue" required>
+                                                <option disabled="true" [ngValue]="null">POC's</option>
+                                                <option *ngFor="let val of POCS" [ngValue]="val">{{val}}</option>
+                                              </select>
+                                            </div>
+                                          </div>
+                                          <div class="form-row">
+                                              <div class="form-group col-md-3">
+                                                  <select class="custom-select"name="complexity"[ngModel]="DefaultValue" required>
+                                                    <option disabled="true" [ngValue]="null">Issue-Types</option>
+                                                    <option *ngFor="let val of issue_type" [ngValue]="val">{{val}}</option>
+                                                  </select>
+                                                </div>
+                                            <div class="form-group col-md-3">
+                                              <div class="input-group">
+                                                <input class="form-control" placeholder="Scheduled start date"  [(ngModel)]="schStart" name="scheduled_start_date" ngbDatepicker #a="ngbDatepicker" required>
+                                                  <div class="input-group-append">
+                                                    <button class="btn btn-outline-secondary" (click)="a.toggle()" type="button">
+                                                      <img src="/assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                                                    </button>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <div class="form-group col-md-3">
+                                                <div class="input-group">
+                                                  <input class="form-control" placeholder="Scheduled end date"  [(ngModel)]="schEnd" name="scheduled_end_date" ngbDatepicker #b="ngbDatepicker" required>
+                                                    <div class="input-group-append">
+                                                      <button class="btn btn-outline-secondary" (click)="b.toggle()" type="button">
+                                                        <img src="/assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                                                      </button>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <div class="form-row">
+                                                <div class="form-group col-md-3">
+                                                  <select class="custom-select"name="task_status"[ngModel]="DefaultValue"required>
+                                                    <option disabled="true" [ngValue]="null">Status</option>
+                                                    <option *ngFor="let val of Status" [ngValue]="val">{{val}}</option>
+                                                  </select>
+                                                </div>
+                                              </div>
+                                              <div class="form-group">
+                                                <label for="inputState">Comments</label>
+                                                <textarea class="form-control" [(ngModel)]="comments" name="job_comments"></textarea>
+                                              </div>
+                                              <button type="submit" class="btn btn-primary" (click)="createNewTask()"[disabled] = "!taskCreateForm.valid">Create new task</button>
+                                        </div>
+                                     </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>

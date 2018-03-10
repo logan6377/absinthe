@@ -1,55 +1,69 @@
-<div class="row task-list" *ngIf="showList"> 
-      <div class="col-md-3"> 
-            <div class="card"> 
-                  <div class="card-body">
-                        <h5 class="card-title">Yet To Start</h5>
-                        <div class="alert alert-success" *ngFor="let item of taskdata | bucket : '0'; let i=index" (click)="moveTo(item)">
+<div class="task-list" *ngIf="showList">
+      <div class="container-fluid">
+      <div class="row title"> 
+            <!--div class="col-md-3"> 
+                  <div class="card"> 
+                        <div class="card-body">
+                              <h5 class="card-title">Yet To Start</h5>
+                              <div class="alert alert-success" *ngFor="let item of taskdata | bucket : '0'; let i=index" (click)="moveTo(item)">
+                                    {{item.convergeID}} | {{item.publisher}} | {{item.pocs}} <br/> {{item.jobComments}}
+                              </div> 
+                        </div>
+                  </div>
+            </div> 
+            <div class="col-md-3"> 
+                  <div class="card"> 
+                        <div class="card-body">
+                              <h5 class="card-title">In Progress</h5>
+                              <div class="alert alert-success" *ngFor="let item of taskdata | bucket : '1' let i=index" (click)="moveTo(item)">
+                              {{item.convergeID}} | {{item.publisher}} | {{item.pocs}}  <br/> {{item.jobComments}}
+                              </div> 
+                        </div>
+                  </div>
+            </div> 
+            <div class="col-md-3"> 
+                  <div class="card"> 
+                        <div class="card-body">
+                              <h5 class="card-title">Todo</h5>
+                              <div class="alert alert-success"  *ngFor="let item of taskdata | bucket : '2' let i=index" (click)="moveTo(item)">
                               {{item.convergeID}} | {{item.publisher}} | {{item.pocs}} <br/> {{item.jobComments}}
-                        </div> 
+                              </div> 
+                        </div>
                   </div>
             </div>
-      </div> 
-      <div class="col-md-3"> 
-            <div class="card"> 
-                  <div class="card-body">
-                        <h5 class="card-title">In Progress</h5>
-                        <div class="alert alert-success" *ngFor="let item of taskdata | bucket : '1' let i=index" (click)="moveTo(item)">
-                        {{item.convergeID}} | {{item.publisher}} | {{item.pocs}}  <br/> {{item.jobComments}}
-                        </div> 
+            <div class="col-md-3"> 
+                  <div class="card"> 
+                        <div class="card-body">
+                              <h5 class="card-title">Completed</h5>
+                              <div class="alert alert-success" *ngFor="let item of taskdata | bucket : '3' let i=index" (click)="moveTo(item)">
+                              {{item.convergeID}} | {{item.publisher}} | {{item.pocs}} <br/> {{item.jobComments}}
+                              </div>  
+                        </div>
                   </div>
-            </div>
-      </div> 
-      <div class="col-md-3"> 
-            <div class="card"> 
-                  <div class="card-body">
-                        <h5 class="card-title">Todo</h5>
-                        <div class="alert alert-success"  *ngFor="let item of taskdata | bucket : '2' let i=index" (click)="moveTo(item)">
-                        {{item.convergeID}} | {{item.publisher}} | {{item.pocs}} <br/> {{item.jobComments}}
-                        </div> 
-                  </div>
-            </div>
-      </div>
-      <div class="col-md-3"> 
-            <div class="card"> 
-                  <div class="card-body">
-                        <h5 class="card-title">Completed</h5>
-                        <div class="alert alert-success" *ngFor="let item of taskdata | bucket : '3' let i=index" (click)="moveTo(item)">
-                        {{item.convergeID}} | {{item.publisher}} | {{item.pocs}} <br/> {{item.jobComments}}
-                        </div>  
-                  </div>
-            </div>
+            </div-->
+            <div class="col-md-2">ConvergeID</div>
+            <div class="col-md-1">Job Type</div>
+            <div class="col-md-1">Publisher</div>
+            <div class="col-md-1">Complexity</div> 
+            <div class="col-md-2">Status</div>
+            <div class="col-md-2">Sch.Start</div>
+            <div class="col-md-1">Sch.End</div>
+            <div class="col-md-1">Sch.Hours</div> 
+            <div class="col-md-1">Edit</div>
       </div>  
-  
-</div>  
 
-  
-  <!--
-  <div class="alert alert-success" *ngFor="let item of taskdata | bucket : 'Completed' let i=index" (click)="moveTo(item)">
-    {{item.id}} | {{item.title}} | {{item.author}} 
-  </div>
-
-  <a href="javascript:;" class="btn btn-primary" (click)="addNewTask()">New Task</a>
-
--->
+      <div class="row" *ngFor="let item of taskdata | bucket : '0':'1' ">
+            <div class="col-md-2">{{item.converge_id}}</div>
+            <div class="col-md-1">{{item.jobtype}}</div>
+            <div class="col-md-1">{{item.publisher}}</div>
+            <div class="col-md-1">{{item.complexity}}</div>
+            <div class="col-md-2">{{item.task_status }}</div>
+            <div class="col-md-2">{{item.scheduled_start_date}}</div>
+            <div class="col-md-1">{{item.scheduled_end_date}}</div>
+            <div class="col-md-1">{{item.scheduled_hours}}</div> 
+            <div class="col-md-1">Edit</div>
+      </div>
+</div>
+</div> 
 
 

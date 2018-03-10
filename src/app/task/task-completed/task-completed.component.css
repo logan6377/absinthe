@@ -1,0 +1,20 @@
+.task-complete {
+    padding: 2rem 0;
+}
+.title.row > div{
+    font-weight: bold;
+    font-size: 16px;
+    padding: 7px 10px
+}
+.row > div{
+    border:1px solid #CCC;
+    border-top: 0;
+    border-left: 0;
+    padding: 3px 10px
+}
+.row:first-child > div{
+    border-top: 1px  solid #CCC;
+}
+.row > div:first-child{
+    border-left: 1px  solid #CCC;
+}

@@ -11,8 +11,8 @@ export class TaskListComponent implements OnInit {
   taskdata:Task[]; 
   showList:boolean=false;
   
-  constructor(private http:TaskDetailsService ) { 
-      this.http.getCurrentTask()
+  constructor(private _taskdata:TaskDetailsService ) { 
+      this._taskdata.getCurrentTask()
       .subscribe( 
             (data) => {
                   this.taskdata=data;

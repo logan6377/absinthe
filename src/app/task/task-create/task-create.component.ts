@@ -22,23 +22,26 @@ export class TaskCreateComponent implements OnInit {
       Publishers:string[]=['WM','CVS','DG'];
       POCS:string[]=['Bill','Khary','Noble'];
       Status:string[]=['InProgress', 'YetToStart'];
+      scheduled_hours:number;
 
       schStart:any;
       schEnd:any;
       actStart:any;
       actEnd:any; 
 
-      constructor(private http:TaskDetailsService, private router:Router) {  }
+      constructor(private saveTask:TaskDetailsService, private router:Router) {  }
 
       ngOnInit() {
 
       } 
 
-      onSubmit(data){
-            console.log(data)
-            this.http.createTaskDB(data).subscribe(
+      onSubmit(data:Task){
+            //console.log(data)
+            data.scheduled_start_date = this.dateFormat(data.scheduled_start_date);
+            data.scheduled_end_date = this.dateFormat(data.scheduled_end_date);            
+            this.saveTask.saveTask(data).subscribe(
                   (data)=>{
-                        console.log(data);
+                        //console.log(data);
                         this.resetForm(); 
                         this.router.navigate(['task-list']);
                   }
@@ -50,6 +53,11 @@ export class TaskCreateComponent implements OnInit {
             this.createTask = {
                   convergeID:''
             };  
+      }
+
+      dateFormat(data){
+            let convertDate = Object.values(data);
+            return convertDate.join('-')
       }
 
 }

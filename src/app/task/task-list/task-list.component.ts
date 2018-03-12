@@ -10,17 +10,19 @@ import { Task } from '../task';
 export class TaskListComponent implements OnInit { 
   taskdata:Task[]; 
   showList:boolean=false;
+  showForm = {};
   
   constructor(private _taskdata:TaskDetailsService ) { 
+      this.showForm = {};
       this._taskdata.getCurrentTask()
       .subscribe( 
             (data) => {
                   this.taskdata=data;
                   this.showList=true;
-                  console.log(this.taskdata)
+                  //console.log(this.taskdata)
             },
             err => console.error(err),
-            () => console.log('done')
+            //() => //console.log('done')
       ) 
    }
 
@@ -29,12 +31,12 @@ export class TaskListComponent implements OnInit {
   } 
 
   createNewTask(){ 
-    let newTask = new Task();
-    newTask.task_id = '123456';
-    newTask.task_status = 'Completed';
-
    // this.http.addNewTask(Object.assign({}, newTask)); 
   }  
+
+  openTaskDetail(current){
+    this.showForm[current] = !this.showForm[current];
+  }
   
 
 }

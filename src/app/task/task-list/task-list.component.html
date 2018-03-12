@@ -51,17 +51,19 @@
             <div class="col-md-1">Sch.Hours</div> 
             <div class="col-md-1">Edit</div>
       </div>  
-
-      <div class="row" *ngFor="let item of taskdata | bucket : '0':'1' ">
-            <div class="col-md-2">{{item.converge_id}}</div>
-            <div class="col-md-1">{{item.jobtype}}</div>
-            <div class="col-md-1">{{item.publisher}}</div>
-            <div class="col-md-1">{{item.complexity}}</div>
-            <div class="col-md-2">{{item.task_status | status}}</div>
-            <div class="col-md-2">{{item.scheduled_start_date}}</div>
-            <div class="col-md-1">{{item.scheduled_end_date}}</div>
-            <div class="col-md-1">{{item.scheduled_hours}}</div> 
-            <div class="col-md-1">Edit</div>
+      <div *ngFor="let item of taskdata | bucket : '0':'1'; let current=index ">
+            <div class="row" (click)="openTaskDetail(item.task_id)">
+                  <div class="col-md-2">{{item.converge_id}}</div>
+                  <div class="col-md-1">{{item.jobtype}}</div>
+                  <div class="col-md-1">{{item.publisher}}</div>
+                  <div class="col-md-1">{{item.complexity | complexity}}</div>
+                  <div class="col-md-2">{{item.task_status | status}}</div>
+                  <div class="col-md-2">{{item.scheduled_start_date}}</div>
+                  <div class="col-md-1">{{item.scheduled_end_date}}</div>
+                  <div class="col-md-1">{{item.scheduled_hours}}</div> 
+                  <div class="col-md-1">Edit</div>
+            </div>
+            <app-task-create-form *ngIf="showForm[item.task_id]" [tasks]="item" [hidden]=""></app-task-create-form>
       </div>
 </div>
 </div> 

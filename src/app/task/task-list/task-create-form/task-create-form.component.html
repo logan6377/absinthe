@@ -7,8 +7,7 @@
                           <!--label for="inputPassword4">Job Type</label-->
                           <select class="custom-select" 
                           name="jobtype" 
-                          [ngModel]="currentTask.jobtype" > 
-                                <option disabled="true" [ngValue]="null">Job Type</option>
+                          [(ngModel)]="currentTask.jobtype" >  
                                 <option *ngFor="let val of JobType" [ngValue]="val">{{val}}</option> 
                           </select>
                     </div>
@@ -18,29 +17,29 @@
                     <div class="form-group col-md-3"> 
                           <input type="email" class="form-control" placeholder="ConvergeID"
                           name="converge_id"  
-                          [(ngModel)]="currentTask.convergeID">
+                          [(ngModel)]="currentTask.converge_id">
                     </div>
                     <div class="form-group col-md-3"> 
                           <select class="custom-select" 
                           name="complexity" 
-                          [ngModel]="Complexity[currentTask.complexity]" > 
-                                <option disabled="true" [ngValue]="null">Complexity</option>
+                          [(ngModel)]="currentTask.complexity" > 
+                                <!--option disabled="true" [ngValue]="null">Complexity</option-->
                                 <option *ngFor="let val of Complexity; let i=index" [ngValue]="i">{{val}}</option> 
                           </select>
                     </div>
                     <div class="form-group col-md-3"> 
                           <select class="custom-select" 
                           name="publisher" 
-                          [ngModel]="DefaultValue" > 
-                                <option disabled="true" [ngValue]="null">{{currentTask.publisher}}</option>
+                          [(ngModel)]="currentTask.publisher" > 
+                                <!--option disabled="true" [ngValue]="null">{{currentTask.publisher}}</option-->
                                 <option *ngFor="let val of Publishers" [ngValue]="val">{{val}}</option> 
                           </select>
                     </div>
                     <div class="form-group col-md-3"> 
                           <select class="custom-select" 
                           name="pocs" 
-                          [ngModel]="DefaultValue" > 
-                                <option disabled="true" [ngValue]="null">{{currentTask.pocs}}</option>
+                          [(ngModel)]="currentTask.pocs" > 
+                                <!--option disabled="true" [ngValue]="null">{{currentTask.pocs}}</option-->
                                 <option *ngFor="let val of POCS" [ngValue]="val">{{val}}</option> 
                           </select>
                     </div>
@@ -54,7 +53,7 @@
                                       <button class="btn btn-outline-secondary" (click)="a.toggle()" type="button">
                                             <img src="/assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
                                       </button>
-                                </div>
+                                </div> 
                           </div>
                     </div>
                     <div class="form-group col-md-2"> 
@@ -102,9 +101,9 @@
                     <div class="form-group col-md-4"> 
                           <select class="custom-select" 
                           name="task_status"
-                          [ngModel]="DefaultValue"                              
+                          [(ngModel)]="currentTask.task_status"                              
                           > 
-                                <option disabled="true" [ngValue]="null">{{Status[currentTask.task_status]}}</option>
+                                <!--option disabled="true" [ngValue]="null">{{Status[currentTask.task_status]}}</option-->
                                 <option *ngFor="let val of Status; let i =index" [ngValue]="i">{{val}}</option>                                    
                           </select>
                     </div>

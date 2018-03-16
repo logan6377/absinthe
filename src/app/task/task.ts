@@ -20,5 +20,10 @@ export class Task{
     token:string  
     updated_at:string
 }
+export class Dates{
+      month:number
+      year:number
+      day:number
+}
 
     

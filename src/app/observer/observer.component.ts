@@ -7,9 +7,7 @@ import { FormsModule } from '@angular/forms'
   templateUrl: './observer.component.html',
   styleUrls: ['./observer.component.css']
 })
-export class ObserverComponent implements OnInit {
-
- 
+export class ObserverComponent implements OnInit { 
 
   private data:Observable<any>;
   private values:Array<number> = [];
@@ -40,8 +38,7 @@ export class ObserverComponent implements OnInit {
       });
 
       let subscription = this.data.forEach(
-            value => this.values.push(value)             
-           
+            value => this.values.push(value)
       );
       
       this.status = "Ended";

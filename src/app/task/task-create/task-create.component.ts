@@ -31,20 +31,20 @@ export class TaskCreateComponent implements OnInit {
 
       constructor(private saveTask:TaskDetailsService, private router:Router) {  }
 
-      ngOnInit() {
-
+      ngOnInit() { 
       } 
 
-      onSubmit(data:Task){
-            //console.log(data)
+      onSubmit(data){
+            console.log(data)
             data.scheduled_start_date = this.dateFormat(data.scheduled_start_date);
             data.scheduled_end_date = this.dateFormat(data.scheduled_end_date);            
             this.saveTask.saveTask(data).subscribe(
                   (data)=>{
-                        //console.log(data);
+                        console.log(data);
                         this.resetForm(); 
                         this.router.navigate(['task-list']);
-                  }
+                  },
+                  err => console.error(err)
       );
              
       }

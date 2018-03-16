@@ -19,7 +19,7 @@ export class TaskListComponent implements OnInit {
             (data) => {
                   this.taskdata=data;
                   this.showList=true;
-                  //console.log(this.taskdata)
+                  console.log(this.taskdata)
             },
             err => console.error(err),
             //() => //console.log('done')

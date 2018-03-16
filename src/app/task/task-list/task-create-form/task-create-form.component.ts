@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Task } from '../../task';
+import { Task, Dates } from '../../task';
 
 @Component({
   selector: 'app-task-create-form',
@@ -21,33 +21,53 @@ export class TaskCreateFormComponent implements OnInit {
   POCS:string[]=['Bill','Khary','Noble'];
   Status:string[]=['InProgress', 'YetToStart'];
   scheduled_hours:number;
+  dateFormats:Dates;
 
-  schStart:any;
+  schStart;
+  
   schEnd:any;
   actStart:any;
-  actEnd:any; 
+  actEnd:any;  
 
   constructor() { }
 
-  ngOnInit() {
-    
+  ngOnInit() {   
 
-    this.currentTask = {
-      convergeID:this.tasks.converge_id,
-      jobtype:this.tasks.jobtype,
-      complexity:this.tasks.complexity,
-      publisher:this.tasks.publisher,
-      pocs:this.tasks.pocs,
-      schHours:this.tasks.scheduled_hours,
-      task_status:this.tasks.task_status,
-      comments:this.tasks.job_comments
-    };
+      this.schStart=this.dateFormat(this.tasks.scheduled_start_date);
+      this.schEnd=this.dateFormat(this.tasks.scheduled_end_date);
+      
+      this.currentTask = {            
+            jobtype:this.tasks.jobtype,
+            converge_id:this.tasks.converge_id,
+            complexity:this.tasks.complexity,
+            publisher:this.tasks.publisher,
+            pocs:this.tasks.pocs,
+            schHours:this.tasks.scheduled_hours,
+            task_status:this.tasks.task_status,
+            comments:this.tasks.job_comments,
+            schStart:this.schStart,
+            schEnd:this.schEnd
+      };  
   }
 
   onSubmit(formData){
-    console.log(formData===this.currentTask);
-    console.log(formData);
-    console.log(this.currentTask);
+    console.log(this.jsonEqual(formData,this.currentTask));
+    console.log('formData',formData);
+    console.log('currentTask',this.currentTask);
+  }
+
+  dateFormat(date){
+      let changeToDateFormat = date.split('-');
+      this.dateFormats = {
+            year:parseInt(changeToDateFormat[0]),
+            day:parseInt(changeToDateFormat[2]),
+            month:parseInt(changeToDateFormat[1]) 
+      }   
+      return this.dateFormats 
+  }
+
+  jsonEqual(a,b){
+     return JSON.stringify(a) === JSON.stringify(b);
   }
 
 }

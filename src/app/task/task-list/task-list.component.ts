@@ -11,6 +11,7 @@ export class TaskListComponent implements OnInit {
   taskdata:Task[]; 
   showList:boolean=false;
   showForm = {};
+  previous;
   
   constructor(private _taskdata:TaskDetailsService ) { 
       this.showForm = {};
@@ -34,7 +35,12 @@ export class TaskListComponent implements OnInit {
    // this.http.addNewTask(Object.assign({}, newTask)); 
   }  
 
-  openTaskDetail(current){
+  openTaskDetail(current){ 
+    if(this.previous){
+      this.showForm[this.previous] = !this.showForm[this.previous];
+    }
+    this.previous = current;
+    
     this.showForm[current] = !this.showForm[current];
   }
   

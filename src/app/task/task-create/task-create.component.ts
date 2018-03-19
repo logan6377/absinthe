@@ -36,8 +36,8 @@ export class TaskCreateComponent implements OnInit {
 
       onSubmit(data){
             console.log(data)
-            data.scheduled_start_date = this.dateFormat(data.scheduled_start_date);
-            data.scheduled_end_date = this.dateFormat(data.scheduled_end_date);            
+            //data.scheduled_start_date = this.dateFormat(data.scheduled_start_date);
+            //data.scheduled_end_date = this.dateFormat(data.scheduled_end_date);            
             this.saveTask.saveTask(data).subscribe(
                   (data)=>{
                         console.log(data);

@@ -11,9 +11,9 @@ import { Observable, Subject } from 'rxjs/Rx';
 
 @Injectable()
 export class TaskDetailsService { 
-      private tokenID = '$1$D6Z1zn0e$KsFLkeBCUwI7snhxBxtJX.';
-      //private url = 'http://10.98.20.100/trackR/';
-      private url = 'http://192.168.0.104/trackR/';      
+      private tokenID = '$1$Xi0.Uu4.$wmv6Igc71YVkVUfoVNYRi0';
+      private url = 'http://10.98.20.100/trackR/';
+      //private url = 'http://192.168.0.104/trackR/';      
       private task : Task[] = [];
       private todosData:string[]=[];  
 
@@ -32,7 +32,7 @@ export class TaskDetailsService {
                         uid : 2,
                         converge_id: "aaaLaogan",
                         jobtype: "Refresh",
-                        complexity:1,
+                        complexity:"",
                         scheduled_start_date:"2018-02-07",
                         scheduled_end_date:"2018-02-11",
                         publisher:"WM",

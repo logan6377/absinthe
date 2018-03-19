@@ -12,6 +12,7 @@ export class TaskListComponent implements OnInit {
   showList:boolean=false;
   showForm = {};
   previous;
+  hideRow:boolean = false;
   
   constructor(private _taskdata:TaskDetailsService ) { 
       this.showForm = {};

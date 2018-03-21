@@ -63,7 +63,7 @@
                   <div class="col-md-1">{{item.scheduled_hours}}</div> 
                   <div class="col-md-1">Edit</div>
             </div>
-            <app-task-create-form *ngIf="showForm[item.task_id]" [tasks]="item" [hidden]=""></app-task-create-form>
+            <app-task-create *ngIf="showForm[item.task_id]" [tasks]="item" [hidden]=""></app-task-create>
       </div>
 </div>
 </div> 

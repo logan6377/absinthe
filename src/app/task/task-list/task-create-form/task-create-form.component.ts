@@ -10,12 +10,8 @@ import { TaskDetailsService } from '../../../services/task-details.service';
 export class TaskCreateFormComponent implements OnInit {
 
   @Input() tasks:Task;
-
-  DefaultValue=null;
-    
+  DefaultValue=null;    
   currentTask:object = {};
-  
-
   JobType:string[]=['New Build','Refresh','Issues'];
   Complexity:string[]=['Simple','Medium','Complex'];
   Publishers:string[]=['WM','CVS','DG'];
@@ -23,9 +19,7 @@ export class TaskCreateFormComponent implements OnInit {
   Status:string[]=['InProgress', 'YetToStart'];
   scheduled_hours:number;
   dateFormats:Dates;
-
-  schStart;
-  
+  schStart;  
   schEnd:any;
   actStart:any;
   actEnd:any;  
@@ -33,10 +27,8 @@ export class TaskCreateFormComponent implements OnInit {
   constructor(private updateTask:TaskDetailsService) { }
 
   ngOnInit() {   
-
       this.schStart=this.dateFormat(this.tasks.scheduled_start_date);
-      this.schEnd=this.dateFormat(this.tasks.scheduled_end_date);
-      
+      this.schEnd=this.dateFormat(this.tasks.scheduled_end_date);      
       this.currentTask = {            
             jobtype:this.tasks.jobtype,
             converge_id:this.tasks.converge_id,
@@ -76,11 +68,11 @@ export class TaskCreateFormComponent implements OnInit {
   }
   
   dateFormatString(data){
-    let convertDate = Object.values(data);
-    return convertDate.join('-')
-}
+      let convertDate = Object.values(data);
+      return convertDate.join('-')
+  }
   jsonEqual(a,b){
-     return JSON.stringify(a) === JSON.stringify(b);
+      return JSON.stringify(a) === JSON.stringify(b);
   }
 
 }

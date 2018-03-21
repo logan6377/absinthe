@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Task, Dates } from '../../task';
+import { TaskDetailsService } from '../../../services/task-details.service';
 
 @Component({
   selector: 'app-task-create-form',
@@ -29,7 +30,7 @@ export class TaskCreateFormComponent implements OnInit {
   actStart:any;
   actEnd:any;  
 
-  constructor() { }
+  constructor(private updateTask:TaskDetailsService) { }
 
   ngOnInit() {   
 
@@ -54,6 +55,14 @@ export class TaskCreateFormComponent implements OnInit {
     console.log(this.jsonEqual(formData,this.currentTask));
     console.log('formData',formData);
     console.log('currentTask',this.currentTask);
+    formData.scheduled_start_date = this.dateFormatString(formData.scheduled_start_date);
+    formData.scheduled_end_date = this.dateFormatString(formData.scheduled_end_date);
+    this.updateTask.updateTask(formData, this.tasks.task_id).subscribe(
+        (data)=>{
+              console.log(data); 
+        },
+        err => console.error(err)
+    )
   }
 
   dateFormat(date){
@@ -65,7 +74,11 @@ export class TaskCreateFormComponent implements OnInit {
       }   
       return this.dateFormats 
   }
-
+  
+  dateFormatString(data){
+    let convertDate = Object.values(data);
+    return convertDate.join('-')
+}
   jsonEqual(a,b){
      return JSON.stringify(a) === JSON.stringify(b);
   }

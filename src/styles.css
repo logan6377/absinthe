@@ -2,6 +2,20 @@
 .bg-light {
     background-color: #f8f9fa!important;
 }
+body{
+      font-family: 'Open Sans', sans-serif !important;
+      background: #eeeeee !important
+}
+app-task-create{
+      margin: 3rem 0 0 0;
+      display: block
+}
+
+app-task-list{
+      margin: 3rem 0 0 0;
+      display: block
+}
+
 
 
 

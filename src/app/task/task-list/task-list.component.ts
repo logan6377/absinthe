@@ -8,7 +8,8 @@ import { Task } from '../task';
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit { 
-  taskdata:Task[]; 
+  taskdata:Task[];
+  addActive:boolean = false 
   showList:boolean=false;
   showForm = {};
   previous;
@@ -37,6 +38,7 @@ export class TaskListComponent implements OnInit {
   }  
 
   openTaskDetail(current){ 
+        this.addActive = !this.addActive
     if(this.previous){
       this.showForm[this.previous] = !this.showForm[this.previous];
     }

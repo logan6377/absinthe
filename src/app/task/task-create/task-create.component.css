@@ -1,3 +1,12 @@
 .task-create{
-      padding: 2rem 0
+      padding: 3rem 0rem;
+      background: #FFF
 }
+h2{
+      font-weight: 500;
+      color: #0ba224; 
+      padding-bottom: 1.5rem
+}
+.form-row .form-group{
+      padding: 1% 2%
+} 

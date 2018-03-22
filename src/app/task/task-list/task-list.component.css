@@ -1,29 +1,50 @@
-.alert{
-    margin-bottom: 10px
-}
-.card-header {
-    padding: .75rem 1.25rem;
-    margin-bottom: 0;
-    background-color: rgba(0,0,0,.03);
-    border-bottom: 1px solid rgba(0,0,0,.125);
-}
-.task-list {
-      padding: 2rem 0;
-}
+h2{
+      font-weight: 500;
+      color: #0ba224;
+      padding-bottom: 1.5rem
+} 
 .title.row > div{
       font-weight: bold;
       font-size: 16px;
-      padding: 7px 10px
+      padding: 10px 10px 20px 10px;
+      background: #e6e7e8;
+      border-top: 5px solid #0ba224 !important;
+      color: #636363;
+      font-weight: 400
 }
-.row > div{
-      border:1px solid #CCC;
+.row{
+      box-shadow: 1px 1px 5px rgba(0,0,0,.1);
+      margin-top: 5px;
+      margin-bottom: 5px
+}
+.row > div{ 
       border-top: 0;
       border-left: 0;
-      padding: 3px 10px
+      padding: 18px 10px;      
+      background: #FFF;
+      color: #999999;
+      font-size: 15px;
+}
+.row.active > div{
+      background: #f8f9f9
 }
 .row:first-child > div{
-      border-top: 1px  solid #CCC;
+      border-top: 0px  solid #CCC;
 }
 .row > div:first-child{
-      border-left: 1px  solid #CCC;
+      border-left: 0px  solid #CCC;
 }
+.col-converge{
+      padding-left: 3% !important
+}
+app-task-create{
+      margin: 0 -15px
+}
+app-task-create ::ng-deep .task-create{
+      margin-top: -5px;
+      padding: 1rem 0
+}
+::ng-deep .form-row .form-group{
+      padding: 0.5% 2% !important
+}
+

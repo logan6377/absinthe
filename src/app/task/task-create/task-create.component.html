@@ -1,91 +1,99 @@
-<div class="row justify-content-md-center task-create">
-      <div class="col-9" >
-                            
-            <form #taskCreateForm="ngForm" (ngSubmit)="onSubmit(taskCreateForm.value)">
-                  <div class="form-row">
-                        <div class="form-group col-md-3">
-                              <!--label for="inputPassword4">Job Type</label-->
-                              <select class="custom-select" 
-                              name="jobtype" 
-                              [(ngModel)]="currentTask.jobtype" >  
-                                    <option *ngFor="let val of JobType" [ngValue]="val" [disabled]="val==='Job Type'">{{val}}</option> 
-                              </select>
-                        </div>
-                  </div>
-
-                  <div class="form-row">  
-                        <div class="form-group col-md-3"> 
-                              <input type="email" class="form-control" placeholder="ConvergeID"
-                              name="converge_id"  
-                              [(ngModel)]="currentTask.converge_id">
-                        </div>
-                        <div class="form-group col-md-3"> 
-                              <select class="custom-select" 
-                              name="complexity" 
-                              [(ngModel)]="currentTask.complexity">  
-                                    <option *ngFor="let val of Complexity; let i=index" [ngValue]="val" [disabled]="val==='Complexity'">{{val}}</option> 
-                              </select>
-                        </div>
-                        <div class="form-group col-md-3"> 
-                              <select class="custom-select" 
-                              name="publisher" 
-                              [(ngModel)]="currentTask.publisher" >  
-                                    <option *ngFor="let val of Publishers" [ngValue]="val"  [disabled]="val==='Publisher'">{{val}}</option> 
-                              </select>
-                        </div>
-                        <div class="form-group col-md-3"> 
-                              <select class="custom-select" 
-                              name="pocs" 
-                              [(ngModel)]="currentTask.pocs" >  
-                                    <option *ngFor="let val of POCS" [ngValue]="val" [disabled]="val==='POCs'">{{val}}</option> 
-                              </select>
-                        </div>
-                  </div>
-                  
-                  <div class="form-row">
-                        <div class="form-group col-md-2"> 
-                              <div class="input-group"> 
-                                    <input class="form-control" placeholder="Scheduled start date"  [(ngModel)]="schStart" name="scheduled_start_date" ngbDatepicker #a="ngbDatepicker">
-                                    <div class="input-group-append">
-                                          <button class="btn btn-outline-secondary" (click)="a.toggle()" type="button">
-                                                <img src="/assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-                                          </button>
+<h2 *ngIf="!currentpage">Create Task</h2>
+<div class="task-create">
+      <div class="container-fluid">
+            <div class="row">     
+                  <div class="col-12" >  
+                        <form #taskCreateForm="ngForm" (ngSubmit)="onSubmit(taskCreateForm.value)">
+                              <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                          <!-- <label>Job Type</label> -->
+                                          <select class="custom-select" 
+                                          name="jobtype" 
+                                          [(ngModel)]="currentTask.jobtype" >  
+                                                <option *ngFor="let val of JobType" [ngValue]="val" [disabled]="val==='Job Type'">{{val}}</option> 
+                                          </select>
+                                    </div>
+                                    <div class="form-group col-md-3">  
+                                          <input type="email" class="form-control" placeholder="ConvergeID"
+                                          name="converge_id"  
+                                          [(ngModel)]="currentTask.converge_id">
                                     </div>
                               </div>
-                        </div>
-                        <div class="form-group col-md-2"> 
-                              <div class="input-group">
-                                    <input class="form-control" placeholder="Scheduled end date"  [(ngModel)]="schEnd" name="scheduled_end_date" ngbDatepicker #b="ngbDatepicker"><!--   -->
-                                    <div class="input-group-append">
-                                          <button class="btn btn-outline-secondary" (click)="b.toggle()" type="button">
-                                                <img src="/assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-                                          </button>
+
+                              <div class="form-row">  
+                                    
+                                    <div class="form-group col-md-3"> 
+                                          <select class="custom-select" 
+                                          name="complexity" 
+                                          [(ngModel)]="currentTask.complexity">  
+                                                <option *ngFor="let val of Complexity; let i=index" [ngValue]="currentpage ? i : val" [disabled]="val==='Complexity'">{{val}}</option> 
+                                          </select>
+                                    </div>
+                                    <div class="form-group col-md-3"> 
+                                          <select class="custom-select" 
+                                          name="publisher" 
+                                          [(ngModel)]="currentTask.publisher" >  
+                                                <option *ngFor="let val of Publishers" [ngValue]="val"  [disabled]="val==='Publisher'">{{val}}</option> 
+                                          </select>
+                                    </div>
+                                    <div class="form-group col-md-3"> 
+                                          <select class="custom-select" 
+                                          name="pocs" 
+                                          [(ngModel)]="currentTask.pocs" >  
+                                                <option *ngFor="let val of POCS" [ngValue]="val" [disabled]="val==='POCs'">{{val}}</option> 
+                                          </select>
                                     </div>
                               </div>
-                        </div>
-                        <div class="form-group col-md-2"> 
-                              <input type="email" class="form-control" id="inputAddress" type="number"  placeholder="Scheduled hours"
-                              [(ngModel)]="currentTask.schHours" 
-                              name="scheduled_hours"
-                              >
-                        </div> 
-                  </div>
-                  <div class="form-row">
-                        <div class="form-group col-md-4"> 
-                              <select class="custom-select" 
-                              name="task_status"
-                              [(ngModel)]="currentTask.task_status">  
-                                    <option *ngFor="let val of Status; let i =index" [ngValue]="val" [disabled]="val==='Status'">{{val}}</option>  
-                              </select>
-                        </div> 
+                              
+                              <div class="form-row">
+                                    <div class="form-group col-md-3"> 
+                                          <div class="input-group"> 
+                                                <input class="form-control" placeholder="Scheduled start date"  [(ngModel)]="schStart" name="scheduled_start_date" ngbDatepicker #a="ngbDatepicker">
+                                                <div class="input-group-append">
+                                                      <button class="btn btn-outline-secondary" (click)="a.toggle()" type="button">
+                                                            <img src="/assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                                                      </button>
+                                                </div>
+                                          </div>
+                                    </div>
+                                    <div class="form-group col-md-3"> 
+                                          <div class="input-group">
+                                                <input class="form-control" placeholder="Scheduled end date"  [(ngModel)]="schEnd" name="scheduled_end_date" ngbDatepicker #b="ngbDatepicker"><!--   -->
+                                                <div class="input-group-append">
+                                                      <button class="btn btn-outline-secondary" (click)="b.toggle()" type="button">
+                                                            <img src="/assets/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                                                      </button>
+                                                </div>
+                                          </div>
+                                    </div>
+                                    <div class="form-group col-md-3"> 
+                                          <input type="email" class="form-control" id="inputAddress" type="number"  placeholder="Scheduled hours"
+                                          [(ngModel)]="currentTask.schHours" 
+                                          name="scheduled_hours"
+                                          >
+                                    </div> 
+                              </div>
+                              <div class="form-row">
+                                    <div class="form-group col-md-3"> 
+                                          <select class="custom-select" 
+                                          name="task_status"
+                                          [(ngModel)]="currentTask.task_status">  
+                                                <option *ngFor="let val of Status; let i =index" [ngValue]="currentpage ? i : val" [disabled]="val==='Status'">{{val}}</option>  
+                                          </select>
+                                    </div> 
 
+                              </div> 
+                              <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                          <label for="inputState">Comments</label>
+                                          <textarea class="form-control" [(ngModel)]="currentTask.comments" name="job_comments"></textarea> 
+                                    </div> 
+                                    <div class="form-group col-md-12">
+                                          <button type="submit" class="btn btn-primary" >Create new task</button>
+                                    </div>
+                              </div>
+                        </form>
                   </div> 
-                  <div class="form-group">
-                        <label for="inputState">Comments</label>
-                        <textarea class="form-control" [(ngModel)]="currentTask.comments" name="job_comments"></textarea> 
-                  </div> 
-                  <button type="submit" class="btn btn-primary" >Create new task</button>
-            </form>
-      </div> 
-
+            </div>
+      </div>
 </div>

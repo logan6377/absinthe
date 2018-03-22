@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core'; 
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core'; 
 import { Task, Dates } from '../task';
 import { TaskDetailsService } from '../../services/task-details.service';
 import { Router } from '@angular/router';
@@ -7,32 +7,32 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-task-create',
   templateUrl: './task-create.component.html',
-  styleUrls: ['./task-create.component.css']
+  styleUrls: ['./task-create.component.css'] 
 })
 export class TaskCreateComponent implements OnInit { 
 
       @Input() tasks:Task; 
-
-      currentTask:object = {};
-
-      JobType:string[]=['Job Type','New Build','Refresh','Issues'];
-      Complexity:string[]=['Complexity','Simple','Medium','Complex'];
-      Publishers:string[]=['Publisher','WM','CVS','DG'];
-      POCS:string[]=['POCs','Bill','Khary','Noble'];
-      Status:string[]=['Status','InProgress', 'YetToStart'];
-      scheduled_hours:number;
-
-      schStart:any;
-      schEnd:any;
-      actStart:any;
-      actEnd:any; 
-      dateFormats:Dates;
+      private pageValue;
+      private currentpage:boolean = false;
+      private currentTask:object = {};
+      private JobType:string[]=['Job Type','New Build','Refresh','Issues'];
+      private Complexity:string[]=['Complexity','Simple','Medium','Complex'];
+      private Publishers:string[]=['Publisher','WM','CVS','DG'];
+      private POCS:string[]=['POCs','Bill','Khary','Noble'];
+      private Status:string[]=['Status','InProgress', 'YetToStart'];
+      private scheduled_hours:number;
+      private schStart:any;
+      private schEnd:any;
+      private actStart:any;
+      private actEnd:any; 
+      private dateFormats:Dates;
 
       constructor(private saveTask:TaskDetailsService, private router:Router) {  }
 
       ngOnInit() { 
             if(this.tasks) { 
                   console.log(this.tasks)
+                  this.currentpage = !this.currentpage
                   this.schStart=this.dateFormat(this.tasks.scheduled_start_date);
                   this.schEnd=this.dateFormat(this.tasks.scheduled_end_date);      
                   this.currentTask = {            
@@ -47,7 +47,7 @@ export class TaskCreateComponent implements OnInit {
                         schStart:this.schStart,
                         schEnd:this.schEnd
                   };
-            }else{
+            }else{ 
                   this.currentTask = {
                         converge_id:'',
                         jobtype:'Job Type',

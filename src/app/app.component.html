@@ -1,24 +1,32 @@
 <div class="container-fluid"> 
 
-      <div class="jumbotron jumbotron-fluid">
+      <!-- <div class="jumbotron jumbotron-fluid">
             <div class="container">
                   <h1 class="display-4">Absinthe</h1>
                   <p class="lead">Create and maintain your daily activity.</p>
             </div>
-      </div>
+      </div> -->
       
       <div class="row">
-            <div class="col">
-                  <ul class="nav nav-tabs">
-                        <li class="nav-item"><a class="nav-link"  routerLink="/task-create" routerLinkActive="active" >Create New Task</a></li>
-                        <li class="nav-item"><a class="nav-link" routerLink="/task-list"  routerLinkActive="active">Task List</a></li>
-                        <li class="nav-item"><a class="nav-link" routerLink="/task-completed" routerLinkActive="active">Completed Task</a></li> 
-                  </ul>  
+            <div class="col-md-2 ">
+                  <div class="app-left-nav"><img src="../assets/left-nav.jpg"></div>
+            </div>
+            <div class="col-md-10"> 
+                  <nav aria-label="breadcrumb"> 
+                        <ol class="breadcrumb">
+                              <li>Task:</li>
+                              <li class="breadcrumb-item" routerLink="/task-create" routerLinkActive="active"><span><img src="../assets/icon-add.jpg"></span>Create</li>
+                              <li class="breadcrumb-item" routerLink="/task-list"  routerLinkActive="active"><span><img src="../assets/icon-list.jpg"></span>List</li>
+                              <li class="breadcrumb-item" routerLink="/task-completed"  routerLinkActive="active"><span><img src="../assets/icon-status.jpg"></span>Completed</li>
+                        </ol>
+                  </nav>
+
+                  <router-outlet></router-outlet>
             </div> 
       </div> 
 
       <!-- <app-task-create></app-task-create>
       <app-task-list></app-task-list> -->
       
-      <router-outlet></router-outlet>
+      
 </div>

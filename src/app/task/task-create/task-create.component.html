@@ -9,14 +9,14 @@
                                           <!-- <label>Job Type</label> -->
                                           <select class="custom-select" 
                                           name="jobtype" 
-                                          [(ngModel)]="currentTask.jobtype" >  
+                                          [(ngModel)]="currentTask.jobtype" [ngClass]="{'create-page':!currentpage}" >  
                                                 <option *ngFor="let val of JobType" [ngValue]="val" [disabled]="val==='Job Type'">{{val}}</option> 
                                           </select>
                                     </div>
                                     <div class="form-group col-md-3">  
                                           <input type="email" class="form-control" placeholder="ConvergeID"
                                           name="converge_id"  
-                                          [(ngModel)]="currentTask.converge_id">
+                                          [(ngModel)]="currentTask.converge_id" [ngClass]="{'create-page':!currentpage}" >
                                     </div>
                               </div>
 
@@ -25,21 +25,21 @@
                                     <div class="form-group col-md-3"> 
                                           <select class="custom-select" 
                                           name="complexity" 
-                                          [(ngModel)]="currentTask.complexity">  
+                                          [(ngModel)]="currentTask.complexity" [ngClass]="{'create-page':!currentpage}" >  
                                                 <option *ngFor="let val of Complexity; let i=index" [ngValue]="currentpage ? i : val" [disabled]="val==='Complexity'">{{val}}</option> 
                                           </select>
                                     </div>
                                     <div class="form-group col-md-3"> 
                                           <select class="custom-select" 
                                           name="publisher" 
-                                          [(ngModel)]="currentTask.publisher" >  
+                                          [(ngModel)]="currentTask.publisher" [ngClass]="{'create-page':!currentpage}" >  
                                                 <option *ngFor="let val of Publishers" [ngValue]="val"  [disabled]="val==='Publisher'">{{val}}</option> 
                                           </select>
                                     </div>
                                     <div class="form-group col-md-3"> 
                                           <select class="custom-select" 
                                           name="pocs" 
-                                          [(ngModel)]="currentTask.pocs" >  
+                                          [(ngModel)]="currentTask.pocs" [ngClass]="{'create-page':!currentpage}" >  
                                                 <option *ngFor="let val of POCS" [ngValue]="val" [disabled]="val==='POCs'">{{val}}</option> 
                                           </select>
                                     </div>
@@ -77,7 +77,7 @@
                                     <div class="form-group col-md-3"> 
                                           <select class="custom-select" 
                                           name="task_status"
-                                          [(ngModel)]="currentTask.task_status">  
+                                          [(ngModel)]="currentTask.task_status" [ngClass]="{'create-page':!currentpage}" >  
                                                 <option *ngFor="let val of Status; let i =index" [ngValue]="currentpage ? i : val" [disabled]="val==='Status'">{{val}}</option>  
                                           </select>
                                     </div> 

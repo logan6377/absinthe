@@ -37,6 +37,9 @@ h2{
 .col-converge{
       padding-left: 3% !important
 }
+.col-converge.active{
+      color:#1b6ac4 !important ;
+}
 app-task-create{
       margin: 0 -15px
 }

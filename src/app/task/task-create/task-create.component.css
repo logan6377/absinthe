@@ -10,3 +10,21 @@ h2{
 .form-row .form-group{
       padding: 1% 2%
 } 
+.custom-select.ng-pristine.create-page{
+      color: #b4b4b4
+}
+.custom-select option{
+      color: #6a6a6a !important
+}
+.custom-select option[disabled]{
+      color: #cecece !important
+}  
+.form-control.create-page::-webkit-input-placeholder{
+      color:#b4b4b4 !important;
+}
+.form-control.create-page:-moz-placeholder {
+      color:#b4b4b4 !important;
+}
+.form-control, .custom-select, label {
+      font-size: 14px
+}

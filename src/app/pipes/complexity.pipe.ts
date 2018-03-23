@@ -9,11 +9,11 @@ export class ComplexityPipe implements PipeTransform {
   transform(value: any, args?: any): any {
         //console.log(value)
       switch(value){
-            case 0:
-            return "Simple";
             case 1:
-            return "Medium";
+            return "Simple";
             case 2:
+            return "Medium";
+            case 3:
             return "Complex"
       } 
   }

@@ -11,7 +11,7 @@ import { Observable, Subject } from 'rxjs/Rx';
 
 @Injectable()
 export class TaskDetailsService { 
-      private tokenID = '$1$VC5.4b5.$KRU2wQoUS2FixJfg6.X09/';
+      private tokenID = '$1$Q70.ZZ3.$WJ0LEcQhl2W.7pznBSjbd/';
       private url = 'http://10.98.20.100/trackR/';
       //private url = 'http://192.168.0.104/trackR/';      
       private task : Task[] = [];
@@ -25,6 +25,7 @@ export class TaskDetailsService {
       saveTask(data){
             data.token = this.tokenID;
             data.uid = 2; 
+            console.log(data)
             //return this.http.post<any>('http://10.98.20.104/simple-codeigniter-rest-api-master/index.php/auth/login', { empid : "IN002", password: '123' },{headers: new HttpHeaders().set('Content-Type', 'application/json')}); 
             return this.http.post<any>(this.url+'index.php/task/create', data) 
       } 

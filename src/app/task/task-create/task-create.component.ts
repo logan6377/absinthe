@@ -27,11 +27,11 @@ export class TaskCreateComponent implements OnInit {
       private actEnd:any; 
       private dateFormats:Dates;
 
-      constructor(private saveTask:TaskDetailsService, private router:Router) {  }
+      constructor(private task:TaskDetailsService, private router:Router) {  }
 
       ngOnInit() { 
             if(this.tasks) { 
-                  console.log(this.tasks)
+                  console.log(this.tasks) 
                   this.currentpage = !this.currentpage
                   this.schStart=this.dateFormat(this.tasks.scheduled_start_date);
                   this.schEnd=this.dateFormat(this.tasks.scheduled_end_date);      
@@ -62,16 +62,18 @@ export class TaskCreateComponent implements OnInit {
       onSubmit(data){
             data.scheduled_start_date = this.dateFormatString(data.scheduled_start_date);
             data.scheduled_end_date = this.dateFormatString(data.scheduled_end_date);   
+            data.complexity = this.complexIndex(data.complexity);
+            data.task_status = this.statusIndex(data.task_status);
 
             if(this.tasks)  { 
-                  this.saveTask.updateTask(data, this.tasks.task_id).subscribe(
+                  this.task.updateTask(data, this.tasks.task_id).subscribe(
                         (data)=>{
                               console.log(data); 
                         },
                         err => console.error(err)
                   ); 
             }else{
-                  this.saveTask.saveTask(data).subscribe(
+                  this.task.saveTask(data).subscribe(
                         (data)=>{
                               console.log(data);
                               this.resetForm(); 
@@ -102,6 +104,13 @@ export class TaskCreateComponent implements OnInit {
 
         jsonEqual(a,b){
             return JSON.stringify(a) === JSON.stringify(b);
+        }
+        complexIndex(data){
+              console.log(this.Complexity.indexOf(data))
+              return this.Complexity.indexOf(data);
+        }
+        statusIndex(data){
+            return this.Status.indexOf(data);
         }
 
 }

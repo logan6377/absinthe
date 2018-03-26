@@ -7,14 +7,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class StatusPipe implements PipeTransform {
 
   transform(value: any, args?: any): any { 
-        switch(value){
-              case 1:
-              return "Yet To Start";
-              case 2:
-              return "In Progress";
-              case 3:
-              return "Completed"
-        } 
+      switch(value){
+            case 1:
+            return "Yet To Start";
+            case 2:
+            return "In Progress";
+            case 3:
+            return "Completed"
+      } 
   }
 
 }

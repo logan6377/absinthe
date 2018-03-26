@@ -3,7 +3,7 @@ import { Task } from '../task/task';
 
 @Pipe({
   name: 'bucket',
-  pure: true
+  pure: false
 })
 export class BucketPipe implements PipeTransform {
   task:Task[]=[];

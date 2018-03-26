@@ -33,38 +33,91 @@ import { Task } from '../task';
       ]
 })
 export class TaskListComponent implements OnInit { 
-  private taskdata:Task[];
-  private addActive:boolean = false 
-  private showList:boolean=false;
-  private opened:boolean = true
-  private showForm = {};
-  private previous;  
+      private taskdata:Task[];
+      private addActive:boolean = false 
+      private showList:boolean=false;
+      private opened:boolean = true
+      private showForm = {};
+      private previous;
+      private taskStatus:boolean;
 
-  constructor(private _taskdata:TaskDetailsService ) { 
-      this.showForm = {};
-      this._taskdata.getCurrentTask()
-      .subscribe( 
-            (data) => {
-                  this.taskdata=data;
-                  this.showList=true;
-                  console.log(this.taskdata)
-            },
-            err => console.error(err),
-            //() => //console.log('done')
-      ) 
-   }
-
-  ngOnInit() {
-      
-  }  
-
-  openTaskDetail(current){ 
-      this.opened = !this.opened
-      this.addActive = !this.addActive
-      if(this.previous){
-            this.showForm[this.previous] = !this.showForm[this.previous];
+      constructor(private task:TaskDetailsService ) { 
+            this.showForm = {};
+            this.task.getCurrentTask()
+            .subscribe( 
+                  (data) => {
+                        this.taskdata=data;
+                        this.showList=true;
+                        console.log(this.taskdata)
+                  },
+                  err => console.error(err),
+                  //() => //console.log('done')
+            ) 
       }
-      this.previous = current;
-      this.showForm[current] = !this.showForm[current];
+
+      ngOnInit() {
+            
+      }  
+
+      openTaskDetail(current){ 
+            this.opened = !this.opened
+            this.addActive = !this.addActive
+            if(this.previous){
+                  this.showForm[this.previous] = !this.showForm[this.previous];
+            }
+            this.previous = current;
+            this.showForm[current] = !this.showForm[current];
       }
+
+      changeTaskStatus(id,status){ 
+            this.task.updateTaskStatus(id,status)
+            .subscribe(
+                  (data)=>{
+                        console.log(data)
+                  },
+                  err =>{
+                        console.error(err)
+                  }
+            );
+            for(let i=0; i<this.taskdata.length; i++){
+                  if(this.taskdata[i].task_id==id){
+                        this.taskdata[i].task_status = this.evaluateStatus(status)
+                  }else{
+                        this.taskdata[i].task_status = 1;
+                  } 
+            }
+      }
+
+      onTaskComplete(id, status){  
+            this.task.updateTaskStatus(id,status)
+            .subscribe(
+                  (data)=>{
+                        console.log(data)
+                  },
+                  err =>{
+                        console.error(err)
+                  }
+            );
+           for(let i=0; i<this.taskdata.length; i++){
+                  if(this.taskdata[i].task_id==id){
+                        this.taskdata[i].task_status = status;
+                  } 
+            }
+
+            console.log(this.taskdata)
+      }
+
+      evaluateStatus(status){
+            if(status===1){
+                  return 2;  
+            }
+            if(status===2){
+                  return 1;  
+            }
+            if(status===3){
+                  return 3
+            }
+      }
+
+
 }

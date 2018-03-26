@@ -93,6 +93,29 @@ class task extends CI_Controller {
                         echo json_encode($resp, JSON_NUMERIC_CHECK);
 			}
 		}
+      }
+      
+      public function status($id)
+	{
+		$method = $_SERVER['REQUEST_METHOD'];
+		if($method != 'POST'  && $method != 'OPTIONS' || $this->uri->segment(3) == '' || is_numeric($this->uri->segment(3)) == FALSE){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+			$response = $this->MyModel->auth();
+			$respStatus = $response['status'];
+			if($response['status'] == 200){
+				$params = json_decode(file_get_contents('php://input'), TRUE);
+				$params['updated_at'] = date('Y-m-d H:i:s');
+				if ($params['task_status']===""){
+					$respStatus = 201;
+					$resp = array('status' => 201,'message' =>  'Data\'s Missing');
+				} else {
+					$resp = $this->MyModel->task_update_data($id,$params);
+				}
+                        //json_output($respStatus,$resp);
+                        echo json_encode($resp, JSON_NUMERIC_CHECK);
+			}
+		}
 	}
 
 	public function delete($id)

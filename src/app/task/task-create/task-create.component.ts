@@ -19,7 +19,7 @@ export class TaskCreateComponent implements OnInit {
       private Complexity:string[]=['Complexity','Simple','Medium','Complex'];
       private Publishers:string[]=['Publisher','WM','CVS','DG'];
       private POCS:string[]=['POCs','Bill','Khary','Noble'];
-      private Status:string[]=['Status','InProgress', 'YetToStart'];
+      private Status:string[]=['Status','Yet To Start', 'In Progress'];
       private scheduled_hours:number;
       private schStart:any;
       private schEnd:any;
@@ -97,20 +97,20 @@ export class TaskCreateComponent implements OnInit {
             return this.dateFormats 
         }
         
-        dateFormatString(data){
+      dateFormatString(data){
             let convertDate = Object.values(data);
             return convertDate.join('-')
-        }
+      }
 
-        jsonEqual(a,b){
+      jsonEqual(a,b){
             return JSON.stringify(a) === JSON.stringify(b);
-        }
-        complexIndex(data){
-              console.log(this.Complexity.indexOf(data))
-              return this.Complexity.indexOf(data);
-        }
-        statusIndex(data){
+      }
+      complexIndex(data){
+            console.log(this.Complexity.indexOf(data))
+            return this.Complexity.indexOf(data);
+      }
+      statusIndex(data){
             return this.Status.indexOf(data);
-        }
+      }
 
 }

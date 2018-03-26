@@ -50,4 +50,9 @@ app-task-create ::ng-deep .task-create{
 ::ng-deep .form-row .form-group{
       padding: 0.5% 2% !important
 }
+.checkbox{
+      position: absolute;
+      left: 6%;
+      top: 23px;
+}
 

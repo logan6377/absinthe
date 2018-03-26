@@ -11,7 +11,7 @@ import { Observable, Subject } from 'rxjs/Rx';
 
 @Injectable()
 export class TaskDetailsService { 
-      private tokenID = '$1$Q70.ZZ3.$WJ0LEcQhl2W.7pznBSjbd/';
+      private tokenID = '$1$ti1.yj5.$iQZOdzyKuljXaaaqzWYR.0';
       private url = 'http://10.98.20.100/trackR/';
       //private url = 'http://192.168.0.104/trackR/';      
       private task : Task[] = [];
@@ -22,6 +22,7 @@ export class TaskDetailsService {
       getCurrentTask(){  
             return this.http.get<Task[]>(this.url+'index.php/task?token='+this.tokenID+'&uid=2')
       } 
+
       saveTask(data){
             data.token = this.tokenID;
             data.uid = 2; 
@@ -30,10 +31,33 @@ export class TaskDetailsService {
             return this.http.post<any>(this.url+'index.php/task/create', data) 
       } 
 
-      updateTask(data, taskid){
-            //console.log(data.task_id)
+      updateTask(data, taskid){ 
             data.token = this.tokenID;
             data.uid = 2;  
             return this.http.post<any>(this.url+'index.php/task/update/'+taskid, data) 
+      }
+
+      updateTaskStatus(taskId, status){
+            let data = new Task();
+            data.token = this.tokenID;
+            data.uid = 2;
+            data.task_status = this.evaluateStatus(status); 
+            return this.http.post<any>(this.url+'index.php/task/status/'+taskId, data);
+      }
+
+      pauseAllTask(taskId){
+            // update all other tasks status based on updateTastStatus() function
+      }
+
+      evaluateStatus(status){
+            if(status===1){
+                  return 2;  
+            }
+            if(status===2){
+                  return 1;  
+            }
+            if(status===3){
+                  return 3
+            }
       }
 }

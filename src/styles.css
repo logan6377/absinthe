@@ -6,7 +6,7 @@ body{
       font-family: 'Open Sans', sans-serif !important;
       background: #eeeeee !important
 }
-app-task-create{
+app-task-create, app-task-completed{
       margin: 3rem 0 0 0;
       display: block
 }

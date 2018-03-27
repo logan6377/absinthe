@@ -26,10 +26,12 @@ export class TaskCreateComponent implements OnInit {
       private actStart:any;
       private actEnd:any; 
       private dateFormats:Dates;
+      private ctaText:string
 
       constructor(private task:TaskDetailsService, private router:Router) {  }
 
       ngOnInit() { 
+            this.ctaText = this.tasks ? 'Save task': 'Create new task';
             if(this.tasks) { 
                   console.log(this.tasks) 
                   this.currentpage = !this.currentpage

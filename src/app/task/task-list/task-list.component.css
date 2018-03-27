@@ -40,6 +40,19 @@ h2{
 .col-converge.active{
       color:#1b6ac4 !important ;
 }
+
+.task-detail-wrapper.row{
+      transition: all 0.2s ease-in;
+      cursor: pointer
+}
+
+.task-detail-wrapper.row:hover{ 
+      box-shadow: -2px 3px 7px rgba(11,162,36,0.2)
+}
+.task-detail-wrapper.row:hover > div{
+      background: #f9f8f8
+}
+
 app-task-create{
       margin: 0 -15px
 }

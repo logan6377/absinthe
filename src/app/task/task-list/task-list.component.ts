@@ -83,7 +83,9 @@ export class TaskListComponent implements OnInit {
                   if(this.taskdata[i].task_id==id){
                         this.taskdata[i].task_status = this.evaluateStatus(status)
                   }else{
-                        this.taskdata[i].task_status = 1;
+                        if(this.taskdata[i].task_status==2){
+                              this.taskdata[i].task_status = 1;
+                        }
                   } 
             }
       }

@@ -7,6 +7,7 @@ import { TaskListComponent } from './task-list.component';
 import { PipesModule } from '../../pipes/pipes.module'; 
 import { TaskCreateModule } from '../task-create/task-create.module';
 import { TaskCreateComponent } from '../task-create/task-create.component';
+import { TaskProgressComponent } from './task-progress/task-progress.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { TaskCreateComponent } from '../task-create/task-create.component';
     TaskCreateModule,
     BrowserAnimationsModule
   ],
-  declarations: [TaskListComponent],
-  exports:[TaskListComponent]
+  declarations: [TaskListComponent, TaskProgressComponent],
+  exports:[TaskListComponent, TaskProgressComponent]
 })
 export class TaskListModule { }

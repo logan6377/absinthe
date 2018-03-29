@@ -117,7 +117,7 @@ class task extends CI_Controller {
 			}
 		}
 	}
-
+ 
 	public function delete($id)
 	{
 		$method = $_SERVER['REQUEST_METHOD'];

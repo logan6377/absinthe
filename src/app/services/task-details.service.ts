@@ -11,7 +11,7 @@ import { Observable, Subject } from 'rxjs/Rx';
 
 @Injectable()
 export class TaskDetailsService { 
-      private tokenID = '$1$uK5.fl5.$qev8JUFgcgrs5jtEi4AxC1';
+      private tokenID = '$1$GV2.XQ5.$aYdAiwcdwgOTSAJaABWF.1';
       private url = 'http://10.98.20.100/trackR/';
       //private url = 'http://192.168.0.104/trackR/';      
       private task : Task[] = [];
@@ -34,6 +34,7 @@ export class TaskDetailsService {
       updateTask(data, taskid){ 
             data.token = this.tokenID;
             data.uid = 2;  
+            console.log(data)
             return this.http.post<any>(this.url+'index.php/task/update/'+taskid, data) 
       }
 
@@ -46,7 +47,7 @@ export class TaskDetailsService {
       }
 
       pauseAllTask(taskId){
-            // update all other tasks status based on updateTastStatus() function
+            //update all other tasks status based on updateTastStatus() function
       }
 
       evaluateStatus(status){

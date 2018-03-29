@@ -63,10 +63,7 @@ export class TaskCreateComponent implements OnInit {
 
       onSubmit(data){
             data.scheduled_start_date = this.dateFormatString(data.scheduled_start_date);
-            data.scheduled_end_date = this.dateFormatString(data.scheduled_end_date);   
-            data.complexity = this.complexIndex(data.complexity);
-            data.task_status = this.statusIndex(data.task_status);
-
+            data.scheduled_end_date = this.dateFormatString(data.scheduled_end_date);  
             if(this.tasks)  { 
                   this.task.updateTask(data, this.tasks.task_id).subscribe(
                         (data)=>{
@@ -75,6 +72,10 @@ export class TaskCreateComponent implements OnInit {
                         err => console.error(err)
                   ); 
             }else{
+
+                  data.complexity = this.complexIndex(data.complexity);
+                  data.task_status = this.statusIndex(data.task_status);
+
                   this.task.saveTask(data).subscribe(
                         (data)=>{
                               console.log(data);
@@ -108,7 +109,7 @@ export class TaskCreateComponent implements OnInit {
             return JSON.stringify(a) === JSON.stringify(b);
       }
       complexIndex(data){
-            console.log(this.Complexity.indexOf(data))
+            console.log(data, this.Complexity.indexOf(data))
             return this.Complexity.indexOf(data);
       }
       statusIndex(data){

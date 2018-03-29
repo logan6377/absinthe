@@ -88,6 +88,10 @@
                                           <label for="inputState">Comments</label>
                                           <textarea class="form-control" [(ngModel)]="currentTask.comments" name="job_comments"></textarea> 
                                     </div> 
+                                    <div class="form-group col-md-6" *ngIf="currentpage">
+                                          <label for="inputState">Edit Reason</label>
+                                          <textarea class="form-control" [(ngModel)]="currentTask.edit_reason" name="edit_reason"></textarea> 
+                                    </div> 
                                     <div class="form-group col-md-12">
                                           <button type="submit" class="btn btn-primary" >{{ctaText}}</button>
                                     </div>

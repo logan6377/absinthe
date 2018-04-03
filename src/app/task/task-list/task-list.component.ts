@@ -6,31 +6,7 @@ import { Task } from '../task';
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.css'],
-  animations: [
-      trigger('ngIfAnimation', [
-          transition('void => app-task-create', [
-              query('app-task-create', style({ opacity: 0, background: 'blue' }), {optional: true}),
-              query('app-task-create', stagger('300ms', [
-                  animate('0.8s ease-in', keyframes([
-                      style({opacity: 0, transform: 'translateY(-75%)', offset: 0}),
-                      style({opacity: .5, transform: 'translateY(35px)', offset: 0.3}),
-                      style({opacity: 1, transform: 'translateY(0)', offset: 1.0}),
-                      ])
-                  )]), {optional: true}),
-              ]),
-          /* transition('* => void', [
-              query('*', style({ opacity: 1, background: 'red' }), {optional: true}),
-              query('*', stagger('300ms', [
-                  animate('0.8s ease-in', keyframes([
-                      style({opacity: 1, transform: 'translateY(0)', offset: 0}),
-                      style({opacity: .5, transform: 'translateY(35px)', offset: 0.3}),
-                      style({opacity: 0, transform: 'translateY(-75%)', offset: 1.0}),
-                      ])
-                  )]), {optional: true}),
-              ]) */
-          ])
-      ]
+  styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit { 
       private taskdata:Task[];
@@ -105,7 +81,6 @@ export class TaskListComponent implements OnInit {
                         this.taskdata[i].task_status = status;
                   } 
             }
-
             console.log(this.taskdata)
       }
 

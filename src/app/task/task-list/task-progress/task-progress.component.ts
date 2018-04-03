@@ -20,17 +20,17 @@ export class TaskProgressComponent implements OnInit {
       @Input() task;
       private progressValue = 70;
       private datee;
+      private dailyhrs = 8.3
  
       constructor() { }
  
       ngOnInit() { 
             let sleepHours = '15:30:00';
-            let actualStartTime = new Date('2018-03-01 18:30:00')
-            let actualEndTime =  new Date('2018-03-02 23:45:00') // 3 + 18:30:00 to 23:45:00
-            //this.datee= Math.abs(actualEndTime.getTime() - actualStartTime.getTime()) / 3600000
+            let actualStartTime = new Date(this.task.actual_start_time); //new Date('2018-03-01 18:30:00')
+            let actualEndTime =  new Date(this.task.actual_end_time); // 3 + 18:30:00 to 23:45:00 
+            console.log('actualEndTime', actualEndTime) 
             console.log(this.hourseBetween(actualStartTime,actualEndTime), this.daysBetween(actualStartTime,actualEndTime))
-
-            console.log('UtilizedHours', this.dailyHours(this.hourseBetween(actualStartTime,actualEndTime),this.daysBetween(actualStartTime,actualEndTime), actualStartTime))
+            console.log('UtilizedHours', this.dailyHours(this.hourseBetween(actualStartTime,actualEndTime), this.daysBetween(actualStartTime,actualEndTime), actualStartTime))
       }
 
       progressed(){
@@ -56,13 +56,13 @@ export class TaskProgressComponent implements OnInit {
       }
 
       dailyHours(totalhours, days, start){ 
-           if(days==0){
+           if(days==0){ 
                   return totalhours
            }else{ 
-                  let value = 24 - Math.floor(start.getTime() / (3600 * 24 * 1000));
-                  let value2 = Math.floor(start.getTime() / (3600 * 24 * 1000)) - 15.30;
-                  console.log(8.3*(days-1))
-                  return (value+value2)+8.3*(days-1)
+                  let firstHalf = 24 - Math.floor(start.getTime() / (3600 * 24 * 1000));
+                  let secondHalf = Math.floor(start.getTime() / (3600 * 24 * 1000)) - 15.30;
+                  //console.log(8.3*(days-1))
+                  return (firstHalf+secondHalf)+this.dailyhrs*(days)
            }
       }
 

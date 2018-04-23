@@ -12,7 +12,7 @@ import { TaskProgressComponent } from './task-progress/task-progress.component';
 @NgModule({
   imports: [
     CommonModule,
-    PipesModule,
+    PipesModule, 
     FormsModule,
     NgbModule,
     TaskCreateModule,

@@ -48,7 +48,7 @@ export class TaskListComponent implements OnInit {
 
       changeTaskStatus(id, status, acth){ 
 
-            console.log('status', status)
+            console.log('status', status, acth)
 
             
             this.task.updateTaskStatus(id,status,acth)
@@ -104,6 +104,9 @@ export class TaskListComponent implements OnInit {
             }
             if(status===3){
                   return 3
+            }
+            if(status===4){
+                  return 2
             }
       }
 

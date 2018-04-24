@@ -32,14 +32,9 @@ export class TaskProgressComponent implements OnInit {
             //this.weekendcout = this.weekends(actualStartTime, actualEndTime)
             let actualStartTimeEST = actualStartTime.toLocaleString("en-US", {timeZone: "America/New_York"});
             let actualEndTimeEST = actualEndTime.toLocaleString("en-US", {timeZone: "America/New_York"});
-
             console.log('timezone', new Date(actualStartTimeEST), new Date(actualEndTimeEST))
-
             console.log('weekend', this.workingHoursBetweenDates(new Date(actualStartTimeEST), new Date(actualEndTimeEST))) 
-
-            //console.log('actualEndTime', actualEndTime) 
-            //console.log(this.hourseBetween(actualStartTime,actualEndTime), this.daysBetween(actualStartTime,actualEndTime))
-           // console.log('UtilizedHours', this.dailyHours(this.hourseBetween(actualStartTime,actualEndTime), this.daysBetween(actualStartTime,actualEndTime), actualStartTime, actualEndTime))
+ 
       }
       progressed(){
             let styles = {

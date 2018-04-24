@@ -12,11 +12,11 @@
             <div class="col-md-1">Sch.Hours</div> 
             <div class="col-md-1">Edit</div>
       </div>   
-      <div *ngFor="let item of taskdata | bucket : '1':'2'; let current=index ">
+      <div *ngFor="let item of taskdata | bucket : '1':'2':'4'; let current=index ">
             <div class="row task-detail-wrapper" (click)="openTaskDetail(item.task_id)" [ngClass]="{'active':showForm[item.task_id]}">
                   <div class="col-md-2 col-converge" [ngClass]="{'active':showForm[item.task_id]}">
                         <input type="checkbox" class="checkbox" *ngIf="item.task_status==2" (click)="onTaskComplete(item.task_id,3)">
-                        {{item.converge_id}}
+                        {{item.converge_id}} --- {{item.task_status}}
                   </div>
                   <div class="col-md-1"><span *ngIf="!showForm[item.task_id]">{{item.jobtype}}</span></div>
                   <div class="col-md-1"><span *ngIf="!showForm[item.task_id]">{{item.publisher}}</span></div>

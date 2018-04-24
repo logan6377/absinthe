@@ -16,6 +16,7 @@ export class TaskListComponent implements OnInit {
       private showForm = {};
       private previous;
       private taskStatus:boolean;
+      private actHours;
 
       constructor(private task:TaskDetailsService ) { 
             this.showForm = {};
@@ -24,7 +25,7 @@ export class TaskListComponent implements OnInit {
                   (data) => {
                         this.taskdata=data;
                         this.showList=true;
-                        console.log(this.taskdata)
+                        //console.log(this.taskdata)
                   },
                   err => console.error(err),
                   //() => //console.log('done')
@@ -45,8 +46,22 @@ export class TaskListComponent implements OnInit {
             this.showForm[current] = !this.showForm[current];
       }
 
-      changeTaskStatus(id,status){ 
-            this.task.updateTaskStatus(id,status)
+      changeTaskStatus(item){ 
+
+            console.log('status', status)
+
+            for(let i=0; i<this.taskdata.length; i++){
+                  if(this.taskdata[i].task_id==item.task_id){
+                        //this.actHours = this.taskdata[i].actual_hours;
+                        this.taskdata[i].task_status = this.evaluateStatus(status)
+                  }else{
+                        if(this.taskdata[i].task_status==2){
+                              this.taskdata[i].task_status = 1;
+                        }
+                  } 
+            }
+
+            this.task.updateTaskStatus(item.task_id,item.task_status,this.actHours)
             .subscribe(
                   (data)=>{
                         console.log(data)
@@ -55,19 +70,13 @@ export class TaskListComponent implements OnInit {
                         console.error(err)
                   }
             );
-            for(let i=0; i<this.taskdata.length; i++){
-                  if(this.taskdata[i].task_id==id){
-                        this.taskdata[i].task_status = this.evaluateStatus(status)
-                  }else{
-                        if(this.taskdata[i].task_status==2){
-                              this.taskdata[i].task_status = 1;
-                        }
-                  } 
-            }
+ 
+            
+
       }
 
       onTaskComplete(id, status){  
-            this.task.updateTaskStatus(id,status)
+            this.task.updateTaskStatus(id,status, this.actHours)
             .subscribe(
                   (data)=>{
                         console.log(data)

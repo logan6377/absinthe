@@ -46,12 +46,23 @@ export class TaskListComponent implements OnInit {
             this.showForm[current] = !this.showForm[current];
       }
 
-      changeTaskStatus(item){ 
+      changeTaskStatus(id, status, acth){ 
 
             console.log('status', status)
 
+            
+            this.task.updateTaskStatus(id,status,acth)
+            .subscribe(
+                  (data)=>{
+                        console.log(data)
+                  },
+                  err =>{
+                        console.error(err)
+                  }
+            );
+
             for(let i=0; i<this.taskdata.length; i++){
-                  if(this.taskdata[i].task_id==item.task_id){
+                  if(this.taskdata[i].task_id==id){
                         //this.actHours = this.taskdata[i].actual_hours;
                         this.taskdata[i].task_status = this.evaluateStatus(status)
                   }else{
@@ -61,15 +72,6 @@ export class TaskListComponent implements OnInit {
                   } 
             }
 
-            this.task.updateTaskStatus(item.task_id,item.task_status,this.actHours)
-            .subscribe(
-                  (data)=>{
-                        console.log(data)
-                  },
-                  err =>{
-                        console.error(err)
-                  }
-            );
  
             
 
@@ -98,7 +100,7 @@ export class TaskListComponent implements OnInit {
                   return 2;  
             }
             if(status===2){
-                  return 1;  
+                  return 4;  
             }
             if(status===3){
                   return 3

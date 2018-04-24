@@ -13,7 +13,9 @@ export class StatusPipe implements PipeTransform {
             case 2:
             return "In Progress";
             case 3:
-            return "Completed"
+            return "Completed";
+            case 4:
+            return "Paused"
       } 
   }
 

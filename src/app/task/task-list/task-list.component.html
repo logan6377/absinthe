@@ -32,7 +32,7 @@
                         <button 
                               class="btn" 
                               [ngClass]="{'btn-success':item.task_status==2}"
-                              (click)="changeTaskStatus(item)">
+                              (click)="changeTaskStatus(item.task_id, item.task_status, item.actual_hours)">
                               {{item.task_status | current_status}}
                         </button>
                   </div> 

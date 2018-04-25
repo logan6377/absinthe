@@ -72,7 +72,6 @@ export class TaskCreateComponent implements OnInit {
                         err => console.error(err)
                   ); 
             }else{
-
                   data.complexity = this.complexIndex(data.complexity);
                   data.task_status = this.statusIndex(data.task_status);
 

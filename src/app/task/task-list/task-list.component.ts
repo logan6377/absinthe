@@ -46,12 +46,15 @@ export class TaskListComponent implements OnInit {
             this.showForm[current] = !this.showForm[current];
       }
 
-      changeTaskStatus(id, status, acth){ 
+      changeTaskStatus(id, status){  
 
-            console.log('status', status, acth)
+            let startHours = this.taskdata.find(item => item.task_id === id) 
 
+            let ast = this.currentTime(status);
+            console.log('ast',ast)
+            let aet = this.pauseTime(status, startHours.actual_start_time);
             
-            this.task.updateTaskStatus(id,status,acth)
+            this.task.updateTaskStatus(id,status,ast,aet)
             .subscribe(
                   (data)=>{
                         console.log(data)
@@ -60,6 +63,8 @@ export class TaskListComponent implements OnInit {
                         console.error(err)
                   }
             );
+
+            //to update local data
 
             for(let i=0; i<this.taskdata.length; i++){
                   if(this.taskdata[i].task_id==id){
@@ -70,15 +75,14 @@ export class TaskListComponent implements OnInit {
                               this.taskdata[i].task_status = 1;
                         }
                   } 
-            }
-
- 
-            
+            } 
 
       }
 
-      onTaskComplete(id, status){  
-            this.task.updateTaskStatus(id,status, this.actHours)
+      onTaskComplete(id, status){   
+            let aet = this.endTime(status);
+
+            this.task.completeTask(id,status,aet)
             .subscribe(
                   (data)=>{
                         console.log(data)
@@ -87,6 +91,8 @@ export class TaskListComponent implements OnInit {
                         console.error(err)
                   }
             );
+
+            //to update local data
            for(let i=0; i<this.taskdata.length; i++){
                   if(this.taskdata[i].task_id==id){
                         this.taskdata[i].task_status = status;
@@ -109,6 +115,58 @@ export class TaskListComponent implements OnInit {
                   return 2
             }
       }
+
+      currentTime(status){
+            if(status===1){ 
+                  return this.utcConversion();
+            }            
+      }
+
+      endTime(status){
+            if(status===3){ 
+                  return this.utcConversion();
+            }            
+      }
+
+      pauseTime(status, startHours){
+            if(status===2){ 
+                  this.actHours = this.actualHours(startHours, this.utcConversion());
+                  console.log(this.actHours)
+                  return this.utcConversion();
+            }else{
+                  return null
+            }
+      }
+
+      utcConversion(){
+            let dateConversion = new Date();
+            let utc = new Date(dateConversion.getTime() + dateConversion.getTimezoneOffset() * 60000); 
+            return utc;
+      }
+
+      actualHours(startDate, endDate) { 
+            var minutesWorked = 0; 
+            if (endDate < startDate) { return 0; } 
+            var current = startDate;
+         
+            var workHoursStart = 9;
+            var workHoursEnd = 17.5;
+            var includeWeekends = true; 
+
+            while(current <= endDate){
+                  var currentTime = current.getHours() + (current.getMinutes() / 60);
+                  if(currentTime >= workHoursStart && currentTime <= workHoursEnd 
+                        && (includeWeekends ? current.getDay() !== 0 && current.getDay() !== 6 : true)){ 
+                        minutesWorked++;
+                  } 
+                current.setTime(current.getTime() + 1000 * 60);
+            } 
+            return Math.round(minutesWorked / 60 * 100) / 100;
+        }
+
+        startEnd(){
+
+        }
 
 
 }

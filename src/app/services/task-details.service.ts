@@ -11,11 +11,13 @@ import { Observable, Subject } from 'rxjs/Rx';
 
 @Injectable()
 export class TaskDetailsService { 
-      private tokenID = '$1$U3c4rXiI$aEuATzC3u.k3bXEl5/QEs0';
-      //private url = 'http://10.98.20.100/trackR/';
-      private url = 'http://192.168.0.104/trackR/';      
+      private tokenID = '$1$Bc/.0r1.$HFEpJ0h69b4bc6MI/biZK0';
+      private url = 'http://10.98.20.100/trackR/';
+      //private url = 'http://192.168.0.104/trackR/';      
       private task : Task[] = [];
-      private todosData:string[]=[];   
+      private todosData:string[]=[];
+      
+      
 
       constructor(private http:HttpClient) {}
 
@@ -38,15 +40,22 @@ export class TaskDetailsService {
             return this.http.post<any>(this.url+'index.php/task/update/'+taskid, data) 
       } 
 
-      updateTaskStatus(taskId, status, acthours){
+      updateTaskStatus(taskId, status, ast, aet){
+            let data = new Task();
+            data.token = this.tokenID;
+            data.uid = 2;
+            data.task_status = this.evaluateStatus(status);
+            if(status===4){data.actual_start_time = ast}            
+            if(status===2){data.actual_end_time = aet;}
+            return this.http.post<any>(this.url+'index.php/task/status/'+taskId, data);
+      }
+
+      completeTask(taskId, status, aet){
             let data = new Task();
             data.token = this.tokenID;
             data.uid = 2;
             data.task_status = this.evaluateStatus(status);  
-            data.actual_start_time = this.currentTime(status);
-            data.actual_end_time = this.pauseTime(status);
-            console.log('actual_start_time',data.actual_start_time);
-            console.log('actual_end_time',data.actual_end_time);
+            data.actual_end_time = aet; 
             return this.http.post<any>(this.url+'index.php/task/status/'+taskId, data);
       }
 
@@ -64,19 +73,10 @@ export class TaskDetailsService {
             if(status===3){
                   return 3
             }
-      }
-
-      currentTime(status){
-            if(status===1){ 
-                  return new Date();
-            }            
-      }
-
-      pauseTime(status){
-            if(status===2){
-                  return new Date();
-            }else{
-                  return null
+            if(status===4){
+                  return 2
             }
       }
+
+      
 }

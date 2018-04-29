@@ -32,8 +32,8 @@ export class TaskProgressComponent implements OnInit {
             //this.weekendcout = this.weekends(actualStartTime, actualEndTime)
             let actualStartTimeEST = actualStartTime.toLocaleString("en-US", {timeZone: "America/New_York"});
             let actualEndTimeEST = actualEndTime.toLocaleString("en-US", {timeZone: "America/New_York"});
-            console.log('timezone', new Date(actualStartTimeEST), new Date(actualEndTimeEST))
-            console.log('weekend', this.workingHoursBetweenDates(new Date(actualStartTimeEST), new Date(actualEndTimeEST))) 
+            //console.log('timezone', new Date(actualStartTimeEST), new Date(actualEndTimeEST))
+           //console.log('weekend', this.workingHoursBetweenDates(new Date(actualStartTimeEST), new Date(actualEndTimeEST))) 
  
       }
       progressed(){
@@ -44,7 +44,7 @@ export class TaskProgressComponent implements OnInit {
             return styles;
       }
       percentage(){
-            console.log(this.task.actual_start_time)
+            //console.log(this.task.actual_start_time)
       }
       hourseBetween(date1, date2) { 
             return Math.abs(date2.getTime() - date1.getTime()) / 3600000
@@ -58,7 +58,7 @@ export class TaskProgressComponent implements OnInit {
            if(days==0){ 
                   return totalhours
            }else{ 
-                 console.log('aa', (start.getTime() / (3600 * 24 * 1000)))
+                 //console.log('aa', (start.getTime() / (3600 * 24 * 1000)))
                   let firstHalf = 24 - (start.getTime() / (3600 * 24 * 1000));
                   let secondHalf = (end.getTime() / (3600 * 24 * 1000)) - 15.30; 
 

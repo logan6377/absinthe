@@ -131,7 +131,7 @@
                     <label for="inputState">Comments</label>
                     <textarea class="form-control" [(ngModel)]="currentTask.comments" name="job_comments"></textarea> 
               </div> 
-              <button type="submit" class="btn btn-primary"  >Create new task</button>
+              <button type="submit" class="btn btn-primary"  [disabled]="taskCreateForm.invalid">Create new task</button>
         </form>
   </div> 
 

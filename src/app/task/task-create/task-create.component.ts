@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core'; 
+import { Component, OnInit, Input, ViewEncapsulation, ViewChild } from '@angular/core'; 
 import { Task, Dates } from '../task';
 import { TaskDetailsService } from '../../services/task-details.service';
 import { Router } from '@angular/router';
@@ -26,13 +26,18 @@ export class TaskCreateComponent implements OnInit {
       private actStart:any;
       private actEnd:any; 
       private dateFormats:Dates;
-      private ctaText:string
+      private ctaText:string;
+      private editReason:boolean = false;
+      private editformdate;
+      private storeInitialValue:boolean = true
+
+      @ViewChild('taskCreateForm') taskCreateForm;
 
       constructor(private task:TaskDetailsService, private router:Router) {  }
 
       ngOnInit() { 
             this.ctaText = this.tasks ? 'Save task': 'Create new task';
-            if(this.tasks) { 
+            if(this.tasks) {  
                   console.log(this.tasks) 
                   this.currentpage = !this.currentpage
                   this.schStart=this.dateFormat(this.tasks.scheduled_start_date);
@@ -60,6 +65,25 @@ export class TaskCreateComponent implements OnInit {
                   }  
             }
       } 
+
+      ngAfterViewChecked(){
+            if(this.tasks) {
+                  this.taskCreateForm.valueChanges.debounceTime(1000).subscribe(data =>{
+                        if(this.storeInitialValue){
+                              this.editformdate = data;
+                              this.storeInitialValue = false;
+                        } 
+
+                        if(JSON.stringify(data).toLowerCase() === JSON.stringify(this.editformdate).toLowerCase()){
+                              console.log('true')
+                        }else{
+                              this.editReason = true
+                        }
+
+                        //this.editReason = true
+                  });
+            }
+      }
 
       onSubmit(data){
             data.scheduled_start_date = this.dateFormatString(data.scheduled_start_date);

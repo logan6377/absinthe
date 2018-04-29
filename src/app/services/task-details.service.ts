@@ -11,9 +11,9 @@ import { Observable, Subject } from 'rxjs/Rx';
 
 @Injectable()
 export class TaskDetailsService { 
-      private tokenID = '$1$Bc/.0r1.$HFEpJ0h69b4bc6MI/biZK0';
-      private url = 'http://10.98.20.100/trackR/';
-      //private url = 'http://192.168.0.104/trackR/';      
+      private tokenID = '$1$fFX/PIER$H2NHct23hwltvSe/RofTE.';
+      //private url = 'http://10.98.20.100/trackR/';
+      private url = 'http://192.168.0.104/trackR/';      
       private task : Task[] = [];
       private todosData:string[]=[];
       
@@ -45,7 +45,7 @@ export class TaskDetailsService {
             data.token = this.tokenID;
             data.uid = 2;
             data.task_status = this.evaluateStatus(status);
-            if(status===4){data.actual_start_time = ast}            
+            if(status === 4 || status === 1){data.actual_start_time = ast}            
             if(status===2){data.actual_end_time = aet;}
             return this.http.post<any>(this.url+'index.php/task/status/'+taskId, data);
       }

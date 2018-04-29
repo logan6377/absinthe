@@ -25,7 +25,7 @@ export class TaskListComponent implements OnInit {
                   (data) => {
                         this.taskdata=data;
                         this.showList=true;
-                        //console.log(this.taskdata)
+                        console.log(this.taskdata)
                   },
                   err => console.error(err),
                   //() => //console.log('done')
@@ -48,12 +48,12 @@ export class TaskListComponent implements OnInit {
 
       changeTaskStatus(id, status){  
 
-            let startHours = this.taskdata.find(item => item.task_id === id) 
-
-            let ast = this.currentTime(status);
-            console.log('ast',ast)
-            let aet = this.pauseTime(status, startHours.actual_start_time);
-            
+            let startHours = this.taskdata.find(item => item.task_id === id);
+            let startHourse = this.utcConvesionDB(startHours.actual_start_time);
+            console.log('ast',startHours.actual_start_time,'--------', startHourse)
+            let ast = this.currentTime(status);           
+            let aet = this.pauseTime(status, startHourse);
+                        
             this.task.updateTaskStatus(id,status,ast,aet)
             .subscribe(
                   (data)=>{
@@ -131,7 +131,7 @@ export class TaskListComponent implements OnInit {
       pauseTime(status, startHours){
             if(status===2){ 
                   this.actHours = this.actualHours(startHours, this.utcConversion());
-                  console.log(this.actHours)
+                  console.log(startHours,'---',this.actHours)
                   return this.utcConversion();
             }else{
                   return null
@@ -139,12 +139,34 @@ export class TaskListComponent implements OnInit {
       }
 
       utcConversion(){
-            let dateConversion = new Date();
-            let utc = new Date(dateConversion.getTime() + dateConversion.getTimezoneOffset() * 60000); 
-            return utc;
+            let d = new Date()
+           // console.log('date',d)
+            let utc = d.getTime() + (d.getTimezoneOffset() * 60000)
+            let nd = new Date(utc + (3600000*+5.5));
+            let dateConversion = nd.toISOString().slice(0, 19).replace('T', ' '); 
+            //console.log('utcConversion', nd,'-----------------', dateConversion)
+            return dateConversion;
       }
 
-      actualHours(startDate, endDate) { 
+      utcConvesionDB(date){ 
+            let d= new Date(date);
+            //let d =  a.setHours(a.getHours() + 4);
+            //console.log('dbdate',d)
+            let utc = d.getTime() + (330 * 60000) - 330
+            let nd = new Date(utc);
+            let dateConversion = nd.toISOString().slice(0, 19).replace('T', ' '); 
+            console.log('utcConvesionDB',nd,'-----------------', dateConversion)
+            return dateConversion;
+      }
+
+      actualHours(startDate1, endDate1) { 
+            let actualStartTime = new Date(startDate1); //new Date('2018-03-01 18:30:00')
+            let actualEndTime =  new Date(endDate1); // 3 + 18:30:00 to 23:45:00
+            //this.weekendcout = this.weekends(actualStartTime, actualEndTime)
+            let startDate = new Date(actualStartTime.toLocaleString("en-US", {timeZone: "America/New_York"}));
+            let endDate =new Date(actualEndTime.toLocaleString("en-US", {timeZone: "America/New_York"}));
+
+
             var minutesWorked = 0; 
             if (endDate < startDate) { return 0; } 
             var current = startDate;
@@ -161,6 +183,7 @@ export class TaskListComponent implements OnInit {
                   } 
                 current.setTime(current.getTime() + 1000 * 60);
             } 
+            console.log((minutesWorked / 60 * 100)/100)
             return Math.round(minutesWorked / 60 * 100) / 100;
         }
 

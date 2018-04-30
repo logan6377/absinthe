@@ -13,6 +13,7 @@
                                                 required
                                                 [(ngModel)]="currentTask.jobtype"
                                                 [ngClass]="{'create-page':!currentpage, 'ng-invalid-custom':true}" 
+                                                (ngModelChange)="changejobtype($event)"
                                           >  
                                                 <option 
                                                       *ngFor="let val of JobType" 
@@ -102,7 +103,7 @@
                                           <label for="inputState">Edit Reason</label>
                                           <textarea class="form-control" required [(ngModel)]="currentTask.edit_reason" name="edit_reason"></textarea> 
                                     </div> 
-                                    <div class="form-group col-md-12">
+                                    <div class="form-group col-md-12" *ngIf="editReason">
                                           <button type="submit" class="btn btn-primary" [disabled]="taskCreateForm.invalid">{{ctaText}}</button>
                                     </div>
                               </div>

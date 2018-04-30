@@ -29,7 +29,8 @@ export class TaskCreateComponent implements OnInit {
       private ctaText:string;
       private editReason:boolean = false;
       private editformdate;
-      private storeInitialValue:boolean = true
+      private storeInitialValue:boolean = true;
+       
 
       @ViewChild('taskCreateForm') taskCreateForm;
 
@@ -55,6 +56,7 @@ export class TaskCreateComponent implements OnInit {
                         schEnd:this.schEnd
                   };
             }else{ 
+                  this.editReason = true
                   this.currentTask = {
                         converge_id:'',
                         jobtype:'Job Type',
@@ -66,9 +68,14 @@ export class TaskCreateComponent implements OnInit {
             }
       } 
 
+      changejobtype(value){
+            let index = this.JobType.indexOf(value); 
+            if(index===2){}
+      }
+
       ngAfterViewChecked(){
             if(this.tasks) {
-                  this.taskCreateForm.valueChanges.debounceTime(1000).subscribe(data =>{
+                  this.taskCreateForm.valueChanges.debounceTime(500).subscribe(data =>{
                         if(this.storeInitialValue){
                               this.editformdate = data;
                               this.storeInitialValue = false;

@@ -11,7 +11,7 @@ import { Observable, Subject } from 'rxjs/Rx';
 
 @Injectable()
 export class TaskDetailsService { 
-      private tokenID = '$1$fFX/PIER$H2NHct23hwltvSe/RofTE.';
+      private tokenID = '$1$vFDho34x$MuhM2B6ul8dyvidBxwmJT1';
       //private url = 'http://10.98.20.100/trackR/';
       private url = 'http://192.168.0.104/trackR/';      
       private task : Task[] = [];
